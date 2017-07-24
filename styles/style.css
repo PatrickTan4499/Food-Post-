@@ -1,21 +1,29 @@
 body {
-  background-color: #8FBC8F;
-  font-family:sans-serif;
+  background-color: #52a334;
 }
 
 #button {
   position:relative;
   left: 30%;
   border: none;
-  color: black ;
+  color: black;
   padding: 25px 40px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-family: sans-serif;
+  font-family: monospace;
   font-size: 30px;
+  margin-left: 140px;
+  margin-top: 200px;
+  background: #996600;
+  border-radius: 15px;
+
+
+
 }
 
 #maintitle{
+  font-size: 50px;
   text-align: center;
+  font-family: monospace;
 }
