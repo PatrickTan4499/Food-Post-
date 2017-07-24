@@ -18,6 +18,7 @@ class FormHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
+
 class ResultHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template("templates/result.html")
