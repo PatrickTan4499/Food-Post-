@@ -2,6 +2,7 @@ import webapp2
 import os
 import jinja2
 
+
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -22,10 +23,11 @@ class ResultHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/result.html")
         self.response.write(template.render())
 
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/form', FormHandler),
     ('/result', ResultHandler),
     ('/Map', MapHandler),
-    ('/camera', CameraHandler),
+    ('/camera', CameraHandler)
 ], debug=True)
