@@ -8,6 +8,7 @@ jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class Donor(ndb.Model):
+    #creates donor class to store all their info
     name = ndb.StringProperty()
     address = ndb.StringProperty()
     city = ndb.StringProperty()
@@ -16,6 +17,7 @@ class Donor(ndb.Model):
     email = ndb.StringProperty()
 
 class Bank(ndb.Model):
+    #creates recipient class to store all their info
     name = ndb.StringProperty()
     address = ndb.StringProperty()
     city = ndb.StringProperty()
@@ -25,21 +27,38 @@ class Bank(ndb.Model):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        #loads the home page
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
 
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
+        #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
     def post(self):
+        #create a Donor to save to datastore
         donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
         donor.put()
+        #puts donor in datastore and redirects to home page
         self.redirect('/')
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
+class BankFormHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template("templates/form2.html")
+        self.response.write(template.render())
+
+    def post(self):
+        #create a recipient to save to datastore
+        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
+        bsnk.put()
+        #puts recipient in datastore and redirects to home page
+        self.redirect('/')
+        template = jinja_environment.get_template("templates/form2.html")
+        self.response.write(template.render())
 
 class ResultHandler(webapp2.RequestHandler):
     def get(self):
@@ -51,5 +70,6 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/form', DonorFormHandler),
     ('/result', ResultHandler),
+    ('/form2', BankFormHandler)
 
 ], debug=True)
