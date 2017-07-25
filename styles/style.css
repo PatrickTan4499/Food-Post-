@@ -1,9 +1,9 @@
 body{
   background:#ec6a38;
-  -webkit-animation:colour 10s linear infinite;
-	-moz-animation:colour 10s linear infinite;
-
+  -webkit-animation:colour 9s linear infinite;
+	-moz-animation:colour 9s linear infinite;
 }
+
 @-webkit-keyframes colour{
 	0%{
 		background:#ec6a38
@@ -51,6 +51,13 @@ h1{
   text-transform:uppercase;
 }
 
+#logo{
+  width: 70px;
+  margin-left: 61%;
+  position: absolute;
+  margin-top: -107px;
+}
+
 .button {
   position:relative;
   border: none;
@@ -67,7 +74,7 @@ h1{
   border-radius: 5px;
   transition: all 0.5s;
   cursor: pointer;
-  box-shadow: 10px 10px 5px green;
+  box-shadow: 10px 10px 5px #ec4038;
 }
 
 
@@ -85,39 +92,9 @@ h1{
   margin-top: 100px;
   background: orange;
   border-radius: 5px;
-  box-shadow: 10px 10px 5px green;
+  box-shadow: 10px 10px 5px #ec4038;
 }
 
-.nav-wrapper{
-  margin-left:80%;
-  margin-top: -90px;
-}
-
-#logo{
-  width: 70px;
-  margin-left: 61%;
-  position: absolute;
-  margin-top: -107px;
-}
-
-#photoone {
-  width: 45%;
-  length: 15%
-  margin-left: 1%;
-  position:relative;
-  border-radius: 20px;
-  margin-top: 4%;
-}
-
-#phototwo {
-  position:absolute;
-  width: 41%;
-  margin-left: 47%;
-  margin-top: -20px;
-  border-radius: 20px;
-  margin-top: -30%;
-
-}
 
 #maintitle{
   font-size: 50px;
