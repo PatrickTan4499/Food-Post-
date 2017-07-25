@@ -59,9 +59,9 @@ body {
 
 #logo{
   width: 70px;
-  margin-left: 61%;
-  position: absolute;
-  margin-top: -90px;
+  margin-left: 62%;
+  position: fixed;
+  margin-top: -105px;
 }
 
 #photoone {
