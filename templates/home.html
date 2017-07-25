@@ -2,20 +2,24 @@
 <!-- linking together the css and js -->
 <div>
   <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
-  <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
+
 </div>
 
 
 <!-- dropdown menu -->
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <button onclick="myFunction()" class="dropbtn">Food Post</button>
   <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="/">Home</a>
+    <a href="/result">Donors and Shelters</a>
+    <a href="/profile">My Profile</a>
+    <a href="/about">About Us</a>
   </div>
 </div>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/javascript/javascript.js"></script>
 
 <!-- google sign in -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -54,6 +58,8 @@
       });
     }
   </script>
+
+
 
 
 

@@ -92,17 +92,24 @@ class ResultHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
-        urlsafe_key = self.request.get('key')
-        post_key = ndb.Key(urlsafe=urlsafe_key)
-        post = post_key.get()
+        #urlsafe_key = self.request.get('key')
+        #post_key = ndb.Key(urlsafe=urlsafe_key)
+        #post = post_key.get()
         template = jinja_environment.get_template("templates/result.html")
         self.response.write(template.render())
+
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template("templates/about.html")
+        self.response.write(template.render())
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/form', DonorFormHandler),
     ('/result', ResultHandler),
     ('/form2', BankFormHandler),
-    ('/profile', ProfileHandler)
+    ('/profile', ProfileHandler),
+    ('/about', AboutHandler)
 
 ], debug=True)
