@@ -32,18 +32,18 @@ class Bank(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        current_user = users.get_current_user()
-        logout_url = users.create_logout_url('/')
-        login_url = users.create_login_url('/')
-
-        template_vars = {
-            'current_user': current_user,
-            'logout_url': logout_url,
-            'login_url': login_url
-        }
+        # current_user = users.get_current_user()
+        # logout_url = users.create_logout_url('/')
+        # login_url = users.create_login_url('/')
+        #
+        # template_vars = {
+        #     'current_user': current_user,
+        #     'logout_url': logout_url,
+        #     'login_url': login_url
+        # }
         #loads the home page
         template = jinja_environment.get_template("templates/home.html")
-        self.response.write(template.render(template_vars))
+        self.response.write(template.render())
 
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
@@ -55,7 +55,7 @@ class DonorFormHandler(webapp2.RequestHandler):
     def post(self):
         #create a Donor to save to datastore
         donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"))
-        current_user = users.get_current_user()
+
         donor.put()
         #puts donor in datastore and redirects to home page
         self.redirect('/')
@@ -71,7 +71,6 @@ class BankFormHandler(webapp2.RequestHandler):
     def post(self):
         #create a recipient to save to datastore
         bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
-        current_user = users.get_current_user()
         bank.put()
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
