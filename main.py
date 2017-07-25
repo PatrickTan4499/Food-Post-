@@ -17,7 +17,7 @@ class Donor(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.KeyProperty(kind = ResultHandler)
+    #post_key = ndb.KeyProperty(kind = DonorFormHandler)
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
@@ -27,7 +27,7 @@ class Bank(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.Property(kind = ResultHandler)
+    #post_key = ndb.Property(kind = BankFormHandler)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -49,17 +49,21 @@ class MainHandler(webapp2.RequestHandler):
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
         #gets key out of url
-        # urlsafe_key = self.request.get('key')
-        # #interact with the database
-        # post_key = ndb.Key(urlsafe = urlsafe_key)
-        # post = post_key.get()
+        urlsafe_key = self.request.get('key')
+        #interact with the database
+        post_key = ndb.Key(urlsafe = urlsafe_key)
+        post = post_key.get()
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
     def post(self):
+        urlsafe_key = self.request.get('post_key')
+        post_key = ndb.Key(urlsafe = urlsafe_key)
+        post = post_key.get()
         #create a Donor to save to datastore
-        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
+        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), post_key = post_key)
+        current_user = users.get_current_user()
         donor.put()
         #puts donor in datastore and redirects to home page
         self.redirect('/')
@@ -75,6 +79,7 @@ class BankFormHandler(webapp2.RequestHandler):
     def post(self):
         #create a recipient to save to datastore
         bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
+        current_user = users.get_current_user()
         bank.put()
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
