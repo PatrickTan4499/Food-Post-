@@ -1,12 +1,30 @@
 <!DOCTYPE html>
+<!-- linking together the css and js -->
+<div>
+  <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
+  <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
+</div>
 
 
+<!-- dropdown menu -->
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+
+<!-- google sign in -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="javascript.js"></script>
 <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
+
+<!-- title and logo -->
   <title>Food Post</title>
   <div id="statmenu">
     <h1 class = "statcont" id="maintitle">Food Post</h1>
@@ -14,11 +32,8 @@
     <img class = "statcont" id = "logo" src="images/logo.png" alt="LOGO">
   </div>
 
-  <div>
-    <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
-    <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
-  </div>
 
+<!-- fill out forms button -->
   <div>
     <form method="get" action="/form">
       <button id= "donorb" type="submit">Become a Donor</button>
@@ -27,6 +42,7 @@
       <button class= "button" type="submit">Become a Recipient</button>
     </form>
   </div>
+
 
 <!--sign out button-->
   <a href="" onclick="signOut();">Sign out</a>
