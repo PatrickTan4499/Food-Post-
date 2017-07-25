@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-{% if current_user %}
+
   <title>Food Post</title>
   <div id="statmenu">
     <h1 class = "statcont" id="maintitle">Food Post</h1>
 
     <img class = "statcont" id = "logo" src="images/logo.png" alt="LOGO">
   </div>
-  <a href="{{ logout_url }}">Log Out</a><br>
+  <a href= "{{ logout_url }}">Log Out</a><br>
 
   <div>
     <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
     <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
   </div>
+
   <div>
     <form method="get" action="/form">
       <button id= "donorb" type="submit">Become a Donor</button>
@@ -20,11 +21,12 @@
       <button class= "button" type="submit">Become a Recipient</button>
     </form>
   </div>
-{% else %}
-  <div id="statmenu">
-    <h1 class = "statcont" id="maintitle">Food Post</h1>
 
-    <img class = "statcont" id = "logo" src="images/logo.png" alt="LOGO">
+
+  <!-- <div id="statmenu">
+    <h1 id="maintitle">Food Post</h1>
+
+    <img id = "logo" src="images/logo.png" alt="LOGO">
   </div>
   <a href="{{ logout_url }}">Log Out</a><br>
   <div>
@@ -32,6 +34,6 @@
     <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
   </div>
   <div>
-  <button><a href="{{ login_url }}">Log in to make become a donor or recipient.</a></button><br>
+  <button><a href="{{ login_url }}">Log in to become a donor or recipient.</a></button><br>
   </div>
-{% endif %}
+ -->
