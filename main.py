@@ -17,7 +17,7 @@ class Donor(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.KeyProperty(kind = DonorForm)
+    #post_key = ndb.KeyProperty(kind = Donor)
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
