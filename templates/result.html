@@ -1,7 +1,9 @@
+<!-- link the css file -->
 <div>
   <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
-
 </div>
+
+<!-- creates the dropdown bar on this page -->
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Food Post</button>
   <div id="myDropdown" class="dropdown-content">
@@ -14,6 +16,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/javascript/javascript.js"></script>
+
+
+<!-- displays all food shelters -->
 <div>
   {% for bank in banks %}
     <a href="/profile?key={{bank.key.urlsafe()}}"<h2>{{bank.name}}</h2></a>
@@ -23,7 +28,7 @@
 </div>
 
 
-
+<!-- displays all the donors -->
 <div>
   {% for donor in donors %}
   <a href="/profile?key={{donor.key.urlsafe()}}"<h2>{{donor.name}}</h2></a>
