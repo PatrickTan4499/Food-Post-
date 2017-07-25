@@ -3,6 +3,7 @@ import os
 import jinja2
 
 from google.appengine.ext import ndb
+#add users api
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -31,8 +32,14 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
 
+#link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
+        donor_query = Donor.query()
+        donors = donor_query.fetch()
+        donor_vars = {
+            "donor": donors
+        }
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
@@ -48,8 +55,14 @@ class DonorFormHandler(webapp2.RequestHandler):
 
 class BankFormHandler(webapp2.RequestHandler):
     def get(self):
+        bank_query = Bank.query()
+        banks = bank_query.fetch()
+        bank_vars = {
+            "banks": banks
+        }
+        #load the form page
         template = jinja_environment.get_template("templates/form2.html")
-        self.response.write(template.render())
+        self.response.write(template.render(bank_vars))
 
     def post(self):
         #create a recipient to save to datastore
