@@ -5,6 +5,12 @@ body {
   font-weight: bolder;
 }
 
+.material-icons {
+  margin-left: -97%;
+  position: relative;
+}
+
+
 h2 {
   font-size: 36px;
   font-family:monospace;

@@ -1,5 +1,54 @@
-body {
-  background-color: #7CA20A;
+body{
+  background:#ec6a38;
+  -webkit-animation:colour 10s linear infinite;
+	-moz-animation:colour 10s linear infinite;
+
+}
+@-webkit-keyframes colour{
+	0%{
+		background:#ec6a38
+	}
+
+	40%{
+		background:#ec4038
+	}
+
+	80%{
+		background:#ec9138
+	}
+
+	100%{
+		background:#ec6a38
+	}
+
+}
+
+@-moz-keyframes colour{
+	0%{
+		background:#ec6a38
+	}
+
+	40%{
+		background:#ec4038
+	}
+
+	80%{
+		background:#ec9138
+	}
+
+	100%{
+		background:#ec6a38
+	}
+
+}
+
+h1{
+  font-family:arial;
+  margin-top:100px;
+  color:#fff;
+  font-size:50px;
+  text-align:center;
+  text-transform:uppercase;
 }
 
 .button {
@@ -48,7 +97,7 @@ body {
   width: 70px;
   margin-left: 61%;
   position: absolute;
-  margin-top: -90px;
+  margin-top: -107px;
 }
 
 #photoone {
