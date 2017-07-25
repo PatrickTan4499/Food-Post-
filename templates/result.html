@@ -1,18 +1,18 @@
+
 <div>
   {% for bank in banks %}
-    {{bank.name}}
+    <a href="/profile?key={{bank.post_key}}"<h2>{{bank.name}}</h2></a>
+    {{bank.address}}, {{bank.city}}<br>
+    {{bank.phone}}
   {% endfor %}
-
-
-
 </div>
 
 
 
 <div>
   {% for donor in donors %}
-    {{donor.name}}
+  <a href="/profile?key={{donor.post_key}}"<h2>{{donor.name}}</h2></a>
+  {{donor.address}}, {{donor.city}}<br>
+  {{donor.phone}}
   {% endfor %}
-
-
 </div>
