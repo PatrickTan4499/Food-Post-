@@ -35,11 +35,6 @@ class MainHandler(webapp2.RequestHandler):
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
-        donor_query = Donor.query()
-        donors = donor_query.fetch()
-        donor_vars = {
-            "donor": donors
-        }
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
@@ -55,19 +50,14 @@ class DonorFormHandler(webapp2.RequestHandler):
 
 class BankFormHandler(webapp2.RequestHandler):
     def get(self):
-        bank_query = Bank.query()
-        banks = bank_query.fetch()
-        bank_vars = {
-            "banks": banks
-        }
         #load the form page
         template = jinja_environment.get_template("templates/form2.html")
-        self.response.write(template.render(bank_vars))
+        self.response.write(template.render())
 
     def post(self):
         #create a recipient to save to datastore
         bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
-        bsnk.put()
+        bank.put()
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
         template = jinja_environment.get_template("templates/form2.html")
@@ -75,8 +65,16 @@ class BankFormHandler(webapp2.RequestHandler):
 
 class ResultHandler(webapp2.RequestHandler):
     def get(self):
+        bank_query = Bank.query()
+        banks = bank_query.fetch()
+        donor_query = Donor.query()
+        donors = donor_query.fetch()
+        template_vars = {
+            "donors": donors,
+            "banks": banks
+        }
         template = jinja_environment.get_template("templates/result.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 
 app = webapp2.WSGIApplication([
