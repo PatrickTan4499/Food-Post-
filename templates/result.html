@@ -21,7 +21,7 @@
 <!-- displays all food shelters -->
 <div>
   {% for bank in banks %}
-    <a href="/profile?key={{bank.key.urlsafe()}}"<h2>{{bank.name}}</h2></a>
+    <a href="/profile?key={{bank.key.urlsafe()}}"><h2>{{bank.name}}</h2></a>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}
   {% endfor %}
@@ -31,7 +31,7 @@
 <!-- displays all the donors -->
 <div>
   {% for donor in donors %}
-  <a href="/profile?key={{donor.key.urlsafe()}}"<h2>{{donor.name}}</h2></a>
+  <a href="/profile?key={{donor.key.urlsafe()}}"><h2>{{donor.name}}</h2></a>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}
   {% endfor %}
