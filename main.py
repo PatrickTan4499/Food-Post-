@@ -17,7 +17,7 @@ class Donor(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.KeyProperty(kind = DonorFormHandler)
+    #post_key = ndb.KeyProperty(kind = DonorForm)
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
@@ -27,7 +27,7 @@ class Bank(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.Property(kind = BankFormHandler)
+    #post_key = ndb.Property(kind = Bank)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
