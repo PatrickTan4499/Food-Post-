@@ -16,9 +16,13 @@ body {
   margin-top: 200px;
   background: #996600;
   border-radius: 15px;
+}
 
-
-
+#logo{
+  width: 70px;
+  margin-left: 61%;
+  position: absolute;
+  margin-top: -105px;
 }
 
 #maintitle{

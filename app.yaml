@@ -12,7 +12,7 @@ handlers:
 - url: /styles
   static_dir: styles
 
--url: /images
+- url: /images
   static_dir: images
 
 - url: .*
