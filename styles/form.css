@@ -3,6 +3,8 @@ body {
   text-align: center;
   font-family: monospace;
   font-weight: bolder;
+  background-image: url(/images/logo.png);
+  background-size: cover;
 }
 
 .material-icons {
