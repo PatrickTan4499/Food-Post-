@@ -3,6 +3,7 @@ import os
 import jinja2
 
 from google.appengine.ext import ndb
+from google.appengine.api import users
 #add users api
 
 jinja_environment = jinja2.Environment(
