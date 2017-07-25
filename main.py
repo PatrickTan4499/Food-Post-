@@ -17,7 +17,7 @@ class Donor(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.KeyProperty(kind = DonorFormHandler)
+    post_key = ndb.KeyProperty()
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
@@ -27,7 +27,7 @@ class Bank(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    #post_key = ndb.Property(kind = BankFormHandler)
+    post_key = ndb.Property()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -49,10 +49,10 @@ class MainHandler(webapp2.RequestHandler):
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
         # #gets key out of url
-        # urlsafe_key = self.request.get('key')
-        # #interact with the database
-        # post_key = ndb.Key(urlsafe = urlsafe_key)
-        # post = post_key.get()
+        urlsafe_key = self.request.get('key')
+        #interact with the database
+        post_key = ndb.Key(urlsafe = urlsafe_key)
+        post = post_key.get()
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
@@ -99,11 +99,16 @@ class ResultHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/result.html")
         self.response.write(template.render(template_vars))
 
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template("templates/result.html")
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/form', DonorFormHandler),
     ('/result', ResultHandler),
-    ('/form2', BankFormHandler)
+    ('/form2', BankFormHandler),
+    ('/profile', ProfileHandler)
 
 ], debug=True)
