@@ -16,6 +16,7 @@ class Donor(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
+    #post_key = ndb.KeyProperty(kind = ResultHandler)
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
@@ -25,16 +26,32 @@ class Bank(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
+    #post_key = ndb.Property(kind = ResultHandler)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+
+        current_user = users.get_current_user()
+        logout_url = users.create_logout_url('/')
+        login_url = users.create_login_url('/')
+
+        template_vars = {
+            'current_user': current_user,
+            'logout_url': logout_url,
+            'login_url': login_url
+        }
         #loads the home page
         template = jinja_environment.get_template("templates/home.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
+        #gets key out of url
+        # urlsafe_key = self.request.get('key')
+        # #interact with the database
+        # post_key = ndb.Key(urlsafe = urlsafe_key)
+        # post = post_key.get()
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
