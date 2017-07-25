@@ -48,21 +48,21 @@ class MainHandler(webapp2.RequestHandler):
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
     def get(self):
-        #gets key out of url
-        urlsafe_key = self.request.get('key')
-        #interact with the database
-        post_key = ndb.Key(urlsafe = urlsafe_key)
-        post = post_key.get()
+        # #gets key out of url
+        # urlsafe_key = self.request.get('key')
+        # #interact with the database
+        # post_key = ndb.Key(urlsafe = urlsafe_key)
+        # post = post_key.get()
         #load the form page
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
     def post(self):
-        urlsafe_key = self.request.get('post_key')
-        post_key = ndb.Key(urlsafe = urlsafe_key)
-        post = post_key.get()
+        # urlsafe_key = self.request.get('post_key')
+        # post_key = ndb.Key(urlsafe = urlsafe_key)
+        # post = post_key.get()
         #create a Donor to save to datastore
-        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), post_key = post_key)
+        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"))
         current_user = users.get_current_user()
         donor.put()
         #puts donor in datastore and redirects to home page
