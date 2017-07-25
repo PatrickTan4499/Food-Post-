@@ -25,7 +25,7 @@
 <!-- google sign in -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
 
@@ -40,11 +40,11 @@
 
 <!-- fill out forms button -->
   <div>
-    <form method="get" action="/form">
-      <button id= "donorb" type="submit">Become a Donor</button>
-    </form>
     <form method="get" action="/form2">
       <button class= "button" type="submit">Become a Recipient</button>
+    </form>
+    <form method="get" action="/form">
+      <button id= "donorb" type="submit">Become a Donor</button>
     </form>
   </div>
 
