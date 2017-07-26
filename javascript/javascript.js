@@ -1,11 +1,5 @@
 
 
-gapi.load('auth2', function() {
-  auth2 = gapi.auth2.init({
-    client_id: 'CLIENT_ID.apps.googleusercontent.com',
-    fetch_basic_profile: false,
-    scope: 'profile'
-  });
 
 //allows the dropdown menu to dropdown
 function myFunction() {
