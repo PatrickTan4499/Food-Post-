@@ -7,19 +7,13 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
-function test(){
-  if (auth2.isSignedIn.get()) {
-    var profile = auth2.currentUser.get().getBasicProfile();
-    document.write('ID: ' + profile.getId());
-    document.write('Full Name: ' + profile.getName());
-    document.write('Given Name: ' + profile.getGivenName());
-    document.write('Family Name: ' + profile.getFamilyName());
-    document.write('Image URL: ' + profile.getImageUrl());
-    document.write('Email: ' + profile.getEmail());
-  }
-}
 
-
+gapi.load('auth2', function() {
+  auth2 = gapi.auth2.init({
+    client_id: 'CLIENT_ID.apps.googleusercontent.com',
+    fetch_basic_profile: false,
+    scope: 'profile'
+  });
 
 //allows the dropdown menu to dropdown
 function myFunction() {

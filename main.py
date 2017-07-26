@@ -32,8 +32,17 @@ class Bank(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         #loads the home page
+        current_user = users.get_current_user()
+        logout_url = users.create_logout_url('/')
+        login_url = users.create_login_url('/')
+
+        template_vars = {
+            "current_user": current_user,
+            "logout_url": logout_url,
+            "login_url": login_url,
+        }
         template = jinja_environment.get_template("templates/home.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
