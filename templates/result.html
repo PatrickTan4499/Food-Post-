@@ -29,19 +29,19 @@
 
 
     {% if bank.protiens != none %}
-      {{bank.protiens}}
+      {{bank.protiens}}:
     {% endif %}
     <br>
     {% if bank.grains != none %}
-      {{bank.grains}}
+      {{bank.grains}}:
     {% endif %}
     <br>
     {% if bank.vegetables != none %}
-      {{bank.vegetables}}
+      {{bank.vegetables}}:
     {% endif %}
     <br>
     {% if bank.fruits != none %}
-      {{bank.fruits}}
+      {{bank.fruits}}:
     {% endif %}
 
   {% endfor %}
@@ -58,19 +58,22 @@
   <!-- not working fully-->
   <br>
   {% if donor.protiens != none %}
-    <b>{{donor.protiens}}</b>
+    <b>{{donor.protiens}}</b>:
     <br>
   {% endif %}
+
   {% if donor.grains != none %}
-    <b>{{donor.grains}}</b>
+    <b>{{donor.grains}}</b>:
     <br>
   {% endif %}
+
   {% if donor.vegetables != none %}
-    <b>{{donor.vegetables}}</b>
+    <b>{{donor.vegetables}}</b>:
     <br>
   {% endif %}
+
   {% if donor.fruits != none %}
-    <b>{{donor.fruits}}</b>
+    <b>{{donor.fruits}}</b>:
     <br>
   {% endif %}
 

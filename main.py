@@ -18,6 +18,10 @@ class Donor(ndb.Model):
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
     post_key = ndb.KeyProperty()
+    vegetables = ndb.StringProperty()
+    grains = ndb.StringProperty()
+    protiens = ndb.StringProperty()
+    fruits = ndb.StringProperty()
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info

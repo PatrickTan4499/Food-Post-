@@ -15,7 +15,8 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
-    <a href="/map">Matches</a>
+    <a href="/map.html">Map?</a>
+    <a href="/match">Matches</a>
     <a href="/about">About Us</a>
   </div>
 </div>
@@ -25,12 +26,14 @@
     <script src="/javascript/javascript.js"></script>
 
 
+
 <!-- title and logo -->
   <title>Food Post</title>
   <div id="statmenu">
+    <br>
     <h1 class = "statcont" id="maintitle">Food Post</h1>
-
     <img id = "logo" src="images/logo.png" alt="LOGO">
+  </br>
   </div>
 
 
@@ -46,10 +49,30 @@
 
 
 
-
 {% if current_user %}
-    <b>Welcome, {{current_user}}</b></br>
-    <a href="{{ logout_url }}">Log Out</a>
-{% else %}
-      <a href="{{ login_url }}">Log In</a><br>
-{% endif %}
+     <b>Welcome, {{current_user}}</b></br>
+     <a href="{{ logout_url }}">Log Out</a>
+ {% else %}
+     <a href="{{ login_url }}">Log In</a><br>
+ {% endif %}
+
+
+
+
+
+
+
+  <!-- <div id="statmenu">
+    <h1 id="maintitle">Food Post</h1>
+
+    <img id = "logo" src="images/logo.png" alt="LOGO">
+  </div>
+  <a href="{{ logout_url }}">Log Out</a><br>
+  <div>
+    <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
+    <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
+  </div>
+  <div>
+  <button><a href="{{ login_url }}">Log in to become a donor or recipient.</a></button><br>
+  </div>
+ -->
