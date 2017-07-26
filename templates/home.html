@@ -15,8 +15,7 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
-    <a href="/map">Map?</a>
-    <a href="/match">Matches</a>
+    <a href="/map">Matches</a>
     <a href="/about">About Us</a>
   </div>
 </div>
@@ -49,13 +48,14 @@
 
 
 {% if current_user %}
-    <a href="{{ logout_url }}">Log Out</a><br>
+    <b>Welcome, {{current_user}}</b></br>
+    <a href="{{ logout_url }}">Log Out</a>
 {% else %}
       <a href="{{ login_url }}">Log In</a><br>
 {% endif %}
 
   <!--sign out button-->
-  <button id=#signOut href="#" onclick="signOut();">Sign out</button>
+  <!-- <button id=#signOut href="#" onclick="signOut();">Sign out</button>
   <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -66,9 +66,9 @@
   </script>
 
   <!-- google sign in -->
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
-  <div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+  <div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
 
 

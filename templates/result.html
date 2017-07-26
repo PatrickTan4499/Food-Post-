@@ -10,8 +10,7 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
-    <a href="/map">Map?</a>
-    <a href="/match">Matches</a>
+    <a href="/map">Matches</a>
     <a href="/about">About Us</a>
   </div>
 </div>
@@ -27,6 +26,24 @@
     <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}
+
+
+    {% if bank.protiens != none %}
+      {{bank.protiens}}
+    {% endif %}
+    <br>
+    {% if bank.grains != none %}
+      {{bank.grains}}
+    {% endif %}
+    <br>
+    {% if bank.vegetables != none %}
+      {{bank.vegetables}}
+    {% endif %}
+    <br>
+    {% if bank.fruits != none %}
+      {{bank.fruits}}
+    {% endif %}
+
   {% endfor %}
 </div>
 
@@ -37,5 +54,25 @@
   <h2><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}
+
+  <!-- not working fully-->
+  <br>
+  {% if donor.protiens != none %}
+    <b>{{donor.protiens}}</b>
+    <br>
+  {% endif %}
+  {% if donor.grains != none %}
+    <b>{{donor.grains}}</b>
+    <br>
+  {% endif %}
+  {% if donor.vegetables != none %}
+    <b>{{donor.vegetables}}</b>
+    <br>
+  {% endif %}
+  {% if donor.fruits != none %}
+    <b>{{donor.fruits}}</b>
+    <br>
+  {% endif %}
+
   {% endfor %}
 </div>
