@@ -2,8 +2,9 @@ body {
   text-align: center;
   font-family: monospace;
   font-weight: bolder;
-  background-image: url(/images/veggi.jpeg);
-  background-size: 1800px 1700px ;
+  background-image: url(/images/foodshelter.jpeg);
+  background-size: 1790px 1426px ;
+  background-color: lightblue;
 }
 
 h2 {
@@ -50,9 +51,9 @@ input[type=checkbox] {
 	visibility: hidden;
 }
 
-.submitbutt {
+.submitbutt{
   border-radius: 4px;
-  background-color: brown;
+  background-color: blue;
   border: none;
   color: white;
   text-align: center;
