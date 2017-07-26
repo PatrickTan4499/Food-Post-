@@ -4,6 +4,8 @@ import jinja2
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from googlemaps.client import client
+from googlemaps.distance_matrix import distance_matrix
 #add users api
 
 jinja_environment = jinja2.Environment(
@@ -105,7 +107,8 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MapHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template("templates/about.html")
+
+        template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
 class MatchHandler(webapp2.RequestHandler):
@@ -121,7 +124,7 @@ app = webapp2.WSGIApplication([
     ('/form2', BankFormHandler),
     ('/profile', ProfileHandler),
     ('/about', AboutHandler),
-    #('/map' MapHandler),
+    ('/map', MapHandler),
     ('/matches', MatchHandler)
 
 ], debug=True)
