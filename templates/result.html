@@ -10,6 +10,8 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
+    <a href="/about">Map?</a>
+    <a href="/match">Matches</a>
     <a href="/about">About Us</a>
   </div>
 </div>
@@ -20,18 +22,19 @@
 
 <!-- displays all food shelters -->
 <div>
+  <h1 id="resultTitle">Banks: </h1>
   {% for bank in banks %}
-    <a href="/profile?key={{bank.key.urlsafe()}}"<h2>{{bank.name}}</h2></a>
+    <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}
   {% endfor %}
 </div>
 
-
 <!-- displays all the donors -->
 <div>
+  <h1 id="resultTitle">Donors: </h1>
   {% for donor in donors %}
-  <a href="/profile?key={{donor.key.urlsafe()}}"<h2>{{donor.name}}</h2></a>
+  <h2><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}
   {% endfor %}
