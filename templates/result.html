@@ -31,12 +31,15 @@
     {% if bank.protiens != none %}
       {{bank.protiens}}
     {% endif %}
+    <br>
     {% if bank.grains != none %}
       {{bank.grains}}
     {% endif %}
+    <br>
     {% if bank.vegetables != none %}
       {{bank.vegetables}}
     {% endif %}
+    <br>
     {% if bank.fruits != none %}
       {{bank.fruits}}
     {% endif %}
@@ -52,17 +55,23 @@
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}
 
+  <!-- not working fully-->
+  <br>
   {% if donor.protiens != none %}
-    {{donor.protiens}}
+    <b>{{donor.protiens}}</b>
+    <br>
   {% endif %}
   {% if donor.grains != none %}
-    {{donor.grains}}
+    <b>{{donor.grains}}</b>
+    <br>
   {% endif %}
   {% if donor.vegetables != none %}
-    {{donor.vegetables}}
+    <b>{{donor.vegetables}}</b>
+    <br>
   {% endif %}
   {% if donor.fruits != none %}
-    {{donor.fruits}}
+    <b>{{donor.fruits}}</b>
+    <br>
   {% endif %}
 
   {% endfor %}
