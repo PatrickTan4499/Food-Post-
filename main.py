@@ -104,10 +104,6 @@ class MapHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
-class MatchHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template("templates/match.html")
-        self.response.write(template.render())
 
 
 app = webapp2.WSGIApplication([
@@ -118,6 +114,5 @@ app = webapp2.WSGIApplication([
     ('/profile', ProfileHandler),
     ('/about', AboutHandler),
     ('/map', MapHandler),
-    ('/match', MatchHandler)
 
 ], debug=True)
