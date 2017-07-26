@@ -26,6 +26,21 @@
     <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}
+
+
+    {% if bank.protiens != none %}
+      {{bank.protiens}}
+    {% endif %}
+    {% if bank.grains != none %}
+      {{bank.grains}}
+    {% endif %}
+    {% if bank.vegetables != none %}
+      {{bank.vegetables}}
+    {% endif %}
+    {% if bank.fruits != none %}
+      {{bank.fruits}}
+    {% endif %}
+
   {% endfor %}
 </div>
 
@@ -36,5 +51,19 @@
   <h2><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}
+
+  {% if donor.protiens != none %}
+    {{donor.protiens}}
+  {% endif %}
+  {% if donor.grains != none %}
+    {{donor.grains}}
+  {% endif %}
+  {% if donor.vegetables != none %}
+    {{donor.vegetables}}
+  {% endif %}
+  {% if donor.fruits != none %}
+    {{donor.fruits}}
+  {% endif %}
+
   {% endfor %}
 </div>
