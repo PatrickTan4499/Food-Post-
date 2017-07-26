@@ -3,13 +3,16 @@ body {
   font-family: monospace;
   font-weight: bolder;
   background-image: url(/images/veggi.jpeg);
-  background-size: 1800px 1700px ;
+  background-size: 1850px 1700px;
+  background-color: lightblue;
+  padding: 5px;
 }
 
 h2 {
   font-size: 40px;
   font-family:monospace;
   font-weight: 600;
+  padding: 15px;
 }
 
 .container {
@@ -18,7 +21,7 @@ h2 {
   margin:auto;
   margin-top:0;
   box-shadow: 6px 5px 5px;
-  opacity: .8;
+  opacity: .9;
 }
 
 h3 {
@@ -49,7 +52,7 @@ input[type=text]:focus {
 
 .submitbutt {
   border-radius: 4px;
-  background-color: brown;
+  background-color: orange;
   border: none;
   color: white;
   text-align: center;

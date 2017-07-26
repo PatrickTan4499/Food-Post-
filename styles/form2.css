@@ -5,12 +5,14 @@ body {
   background-image: url(/images/foodshelter.jpeg);
   background-size: 1790px 1426px ;
   background-color: lightblue;
+  padding: 5px;
 }
 
 h2 {
   font-size: 40px;
   font-family:monospace;
   font-weight: 600;
+  padding: 15px;
 }
 
 .container {
@@ -19,7 +21,7 @@ h2 {
   margin:auto;
   margin-top:0;
   box-shadow: 6px 5px 5px;
-  opacity: .8;
+  opacity: .9;
 }
 
 h3 {
