@@ -27,23 +27,22 @@ class Bank(ndb.Model):
     zipcode = ndb.StringProperty()
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
-    post_key = ndb.Property()
+    post_key = ndb.KeyProperty()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
-        # current_user = users.get_current_user()
-        # logout_url = users.create_logout_url('/')
-        # login_url = users.create_login_url('/')
-        #
-        # template_vars = {
-        #     'current_user': current_user,
-        #     'logout_url': logout_url,
-        #     'login_url': login_url
-        # }
         #loads the home page
+        current_user = users.get_current_user()
+        logout_url = users.create_logout_url('/')
+        login_url = users.create_login_url('/')
+
+        template_vars = {
+            "current_user": current_user,
+            "logout_url": logout_url,
+            "login_url": login_url,
+        }
         template = jinja_environment.get_template("templates/home.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 #link this up to result.html to show all the donors and banks
 class DonorFormHandler(webapp2.RequestHandler):
@@ -55,7 +54,6 @@ class DonorFormHandler(webapp2.RequestHandler):
     def post(self):
         #create a Donor to save to datastore
         donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"))
-
         donor.put()
         #puts donor in datastore and redirects to home page
         self.redirect('/')
@@ -67,7 +65,6 @@ class BankFormHandler(webapp2.RequestHandler):
         #load the form page
         template = jinja_environment.get_template("templates/form2.html")
         self.response.write(template.render())
-
     def post(self):
         #create a recipient to save to datastore
         bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
@@ -79,8 +76,7 @@ class BankFormHandler(webapp2.RequestHandler):
 
 class ResultHandler(webapp2.RequestHandler):
     def get(self):
-        bank_query = Bank.query()
-        banks = bank_query.fetch()
+        banks = Bank.query().fetch()
         donor_query = Donor.query()
         donors = donor_query.fetch()
         template_vars = {
@@ -95,7 +91,7 @@ class ProfileHandler(webapp2.RequestHandler):
         #urlsafe_key = self.request.get('key')
         #post_key = ndb.Key(urlsafe=urlsafe_key)
         #post = post_key.get()
-        template = jinja_environment.get_template("templates/result.html")
+        template = jinja_environment.get_template("templates/profile.html")
         self.response.write(template.render())
 
 class AboutHandler(webapp2.RequestHandler):
@@ -105,7 +101,7 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MapHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template("templates/about.html")
+        template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
 class MatchHandler(webapp2.RequestHandler):
@@ -121,7 +117,7 @@ app = webapp2.WSGIApplication([
     ('/form2', BankFormHandler),
     ('/profile', ProfileHandler),
     ('/about', AboutHandler),
-    #('/map' MapHandler),
-    ('/matches', MatchHandler)
+    ('/map', MapHandler),
+    ('/match', MatchHandler)
 
 ], debug=True)

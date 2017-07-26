@@ -15,7 +15,7 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
-    <a href="/map.html">Map?</a>
+    <a href="/map">Map?</a>
     <a href="/match">Matches</a>
     <a href="/about">About Us</a>
   </div>
@@ -24,12 +24,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/javascript/javascript.js"></script>
-
-<!-- google sign in -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
-<div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div>
-
 
 
 <!-- title and logo -->
@@ -52,16 +46,29 @@
   </div>
 
 
-<!--sign out button-->
-<button id=#signOut href="#" onclick="signOut();">Sign out</button>
-<script>
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
-}
-</script>
+
+
+  {% if current_user %}
+    <a href="{{ logout_url }}">Log Out</a><br>
+  {% else %}
+      <a href="{{ login_url }}">Log In</a><br>
+  {% endif %}
+
+  <!--sign out button-->
+  <button id=#signOut href="#" onclick="signOut();">Sign out</button>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+  </script>
+
+  <!-- google sign in -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
+  <div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
 
