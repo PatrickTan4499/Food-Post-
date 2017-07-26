@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 <!-- linking together the css and js -->
 <div>
   <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
-
+  <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
+  <script src="/javascript/javascript.js"></script>
 </div>
 
 
@@ -13,7 +15,7 @@
     <a href="/">Home</a>
     <a href="/result">Donors and Shelters</a>
     <a href="/profile">My Profile</a>
-    <a href="/about">Map?</a>
+    <a href="/map.html">Map?</a>
     <a href="/match">Matches</a>
     <a href="/about">About Us</a>
   </div>
@@ -26,7 +28,7 @@
 <!-- google sign in -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
 
@@ -35,23 +37,23 @@
   <div id="statmenu">
     <h1 class = "statcont" id="maintitle">Food Post</h1>
 
-    <img class = "statcont" id = "logo" src="images/logo.png" alt="LOGO">
+    <img id = "logo" src="images/logo.png" alt="LOGO">
   </div>
 
 
 <!-- fill out forms button -->
   <div>
-    <form method="get" action="/form">
-      <button id= "donorb" type="submit">Become a Donor</button>
-    </form>
     <form method="get" action="/form2">
       <button class= "button" type="submit">Become a Recipient</button>
+    </form>
+    <form method="get" action="/form">
+      <button id= "donorb" type="submit">Become a Donor</button>
     </form>
   </div>
 
 
 <!--sign out button-->
-<a href="#" onclick="signOut();">Sign out</a>
+<button id=#signOut href="#" onclick="signOut();">Sign out</button>
 <script>
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();

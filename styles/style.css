@@ -61,13 +61,13 @@ body{
 
 #logo{
   width: 70px;
-  margin-left: 61%;
-  position: absolute;
-  margin-top: -107px;
+  position: fixed;
+  margin-left: 690px;
+  margin-top: -110px;
 }
 
 .button {
-  position:relative;
+  position: absolute;
   border: none;
   color: black;
   padding: 25px 40px;
@@ -76,7 +76,39 @@ body{
   display: inline-block;
   font-family: monospace;
   font-size: 30px;
-  margin-left: 35.5%;
+  margin-left: 32%;
+  margin-top: 200px;
+  background: orange;
+  border-radius: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px #ec4038;
+}
+
+#signin {
+  background-color: none;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  margin-left: 1000px;
+  margin-top: -40px;
+}
+
+
+#donorb {
+  position: absolute;
+  border: none;
+  color: black;
+  padding: 25px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 30px;
+  margin-left: 35%;
   margin-top: 90px;
   background: orange;
   border-radius: 5px;
@@ -86,33 +118,17 @@ body{
 }
 
 
-#donorb {
-  position: relative;
-  margin-left: 38%;
-  border: none;
-  color: black;
-  padding: 25px 40px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-family: monospace;
-  font-size: 30px;
-  margin-top: 100px;
-  background: orange;
-  border-radius: 5px;
-  box-shadow: 10px 10px 5px #ec4038;
-}
-
-
 #maintitle{
   font-size: 50px;
   text-align: center;
   font-family: monospace;
+  position: relative;
+  margin-left: -40px;
 }
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: brown;
     color: white;
     padding: 16px;
     font-size: 16px;
