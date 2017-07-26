@@ -3,7 +3,8 @@ body {
   font-family: monospace;
   font-weight: bolder;
   background-image: url(/images/foodshelter.jpeg);
-  background-size: 1790px 1426px ;
+  background-size: 1800px 1426px;
+  image-resolution: from-image;
   background-color: lightblue;
   padding: 5px;
 }
