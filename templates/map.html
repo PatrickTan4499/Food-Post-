@@ -111,143 +111,264 @@
     </td>
   </tr>
 </table> -->
-<input id="address" type="text" value="" placeholder="'food donor' or 'food bank'"></input>
+<!-- <input id="address" type="text" value="" placeholder="'food donor' or 'food bank'"></input>
 <input type="button" value="Search" onclick="codeAddress();"></input>
 <div id="info"></div>
 <script>
-  var geocoder = null;
-  var map = null;
-  var customerMarker = null;
-  var gmarkers = [];
-  var closest = [];
+var geocoder;
+var map;
+var bounds = new google.maps.LatLngBounds();
 
-  function initialize() {
-    // alert("init");
-    geocoder = new google.maps.Geocoder();
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 9,
-      center: new google.maps.LatLng(52.6699927, -0.7274620),
+function initialize() {
+  map = new google.maps.Map(
+    document.getElementById("map_canvas"), {
+      center: new google.maps.LatLng( 37.420179,  -122.07472),
+      zoom: 4,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-    var bounds = new google.maps.LatLngBounds();
-    document.getElementById('info').innerHTML = "found " + locations.length + " locations<br>";
-    for (i = 0; i < locations.length; i++) {
-      var coordStr = locations[i][4];
-      var coords = coordStr.split(",");
-      var pt = new google.maps.LatLng(parseFloat(coords[0]), parseFloat(coords[1]));
-      bounds.extend(pt);
-      marker = new google.maps.Marker({
-        position: pt,
-        map: map,
-        icon: locations[i][5],
-        address: locations[i][2],
-        title: locations[i][0],
-        html: locations[i][0] + "<br>" + locations[i][2]
-      });
-      gmarkers.push(marker);
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent(marker.html);
-            infowindow.open(map, marker);
-          }
-        })
-        (marker, i));
-    }
-    map.fitBounds(bounds);
+  geocoder = new google.maps.Geocoder();
 
+  for (i = 0; i < locations.length; i++) {
+
+
+    geocodeAddress(locations, i);
   }
+}
+google.maps.event.addDomListener(window, "load", initialize);
 
-  function codeAddress() {
-    var numberOfResults = 25;
-    var numberOfDrivingResults = 5;
-    var address = document.getElementById('address').value;
-    geocoder.geocode({
-      'address': address
-    }, function(results, status) {
+function geocodeAddress(locations, i) {
+  var title = locations[i][0];
+  var address = locations[i][1];
+  var url = locations[i][2];
+  geocoder.geocode({
+      'address': locations[i][1]
+    },
+
+    function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        if (customerMarker) customerMarker.setMap(null);
-        customerMarker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
+          icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
           map: map,
-          position: results[0].geometry.location
-        });
-        closest = findClosestN(results[0].geometry.location, numberOfResults);
-        // get driving distance
-        closest = closest.splice(0, numberOfResults);
-        calculateDistances(results[0].geometry.location, closest, numberOfDrivingResults);
+          position: results[0].geometry.location,
+          title: title,
+          animation: google.maps.Animation.DROP,
+          address: address,
+          url: url
+        })
+        infoWindow(marker, map, title, address, url);
+        bounds.extend(marker.getPosition());
+        map.fitBounds(bounds);
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        alert("geocode of " + address + " failed:" + status);
       }
     });
-  }
+}
 
-  function findClosestN(pt, numberOfResults) {
-    var closest = [];
-    document.getElementById('info').innerHTML += "processing " + gmarkers.length + "<br>";
-    for (var i = 0; i < gmarkers.length; i++) {
-      gmarkers[i].distance = google.maps.geometry.spherical.computeDistanceBetween(pt, gmarkers[i].getPosition());
-      document.getElementById('info').innerHTML += "process " + i + ":" + gmarkers[i].getPosition().toUrlValue(6) + ":" + gmarkers[i].distance.toFixed(2) + "<br>";
-      gmarkers[i].setMap(null);
-      closest.push(gmarkers[i]);
-    }
-    closest.sort(sortByDist);
-    return closest;
-  }
-
-  function sortByDist(a, b) {
-    return (a.distance - b.distance)
-  }
-
-  function calculateDistances(pt, closest, numberOfResults) {
-    var service = new google.maps.DistanceMatrixService();
-    var request = {
-      origins: [pt],
-      destinations: [],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: true,
-      avoidTolls: true
-    };
-    for (var i = 0; i < closest.length; i++) {
-      request.destinations.push(closest[i].getPosition());
-    }
-    service.getDistanceMatrix(request, function(response, status) {
-      if (status != google.maps.DistanceMatrixStatus.OK) {
-        alert('Error was: ' + status);
-      } else {
-        var origins = response.originAddresses;
-        var destinations = response.destinationAddresses;
-        var outputDiv = document.getElementById('side_bar');
-        outputDiv.innerHTML = '';
-
-        var results = response.rows[0].elements;
-        // save title and address in record for sorting
-        for (var i = 0; i < closest.length; i++) {
-          results[i].title = closest[i].title;
-          results[i].address = closest[i].address;
-          results[i].idx_closestMark = i;
-        }
-        results.sort(sortByDistDM);
-        for (var i = 0;
-          ((i < numberOfResults) && (i < closest.length)); i++) {
-          closest[i].setMap(map);
-          outputDiv.innerHTML += "<a href='javascript:google.maps.event.trigger(closest[" + results[i].idx_closestMark + "],\"click\");'>" + results[i].title + '</a><br>' + results[i].address + "<br>" + results[i].distance.text + ' appoximately ' + results[i].duration.text + '<br><hr>';
-        }
-      }
+function infoWindow(marker, map, title, address, url) {
+  google.maps.event.addListener(marker, 'click', function() {
+    var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+    iw = new google.maps.InfoWindow({
+      content: html,
+      maxWidth: 350
     });
-  }
+    iw.open(map, marker);
+  });
+}
 
-  function sortByDistDM(a, b) {
-    return (a.distance.value - b.distance.value)
-  }
+function createMarker(results) {
+  var marker = new google.maps.Marker({
+    icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+    map: map,
+    position: results[0].geometry.location,
+    title: title,
+    animation: google.maps.Animation.DROP,
+    address: address,
+    url: url
+  })
+  bounds.extend(marker.getPosition());
+  map.fitBounds(bounds);
+  infoWindow(marker, map, title, address, url);
+  return marker;
+}
 
-  google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7ebnBGvPvJ2q6_YlFwRLeaU-Sx-BD8WM&callback=initMap">
 </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Places Searchbox</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_mASV-56uv2SEhG7gg2MQ_GAKv3ih_Tg&libraries=places&callback=initAutocomplete"
+         async defer></script>
   </body>
 </html>

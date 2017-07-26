@@ -40,12 +40,15 @@ class Bank(ndb.Model):
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
     post_key = ndb.KeyProperty()
+<<<<<<< HEAD
 
     #input from checkboxes
     vegetables = ndb.StringProperty()
     grains = ndb.StringProperty()
     protiens = ndb.StringProperty()
     fruits = ndb.StringProperty()
+=======
+>>>>>>> 5f1265d7c40c511c155792b1c04f1871a6afc63d
 
 class User(ndb.Model):
     name = ndb.StringProperty()
@@ -89,7 +92,7 @@ class BankFormHandler(webapp2.RequestHandler):
         self.response.write(template.render())
     def post(self):
         #create a recipient to save to datastore
-        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit") )
+        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
         bank.put()
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
