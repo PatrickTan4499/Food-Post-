@@ -32,6 +32,10 @@ class Bank(ndb.Model):
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
     post_key = ndb.KeyProperty()
+    vegetables = ndb.StringProperty()
+    grains = ndb.StringProperty()
+    protiens = ndb.StringProperty()
+    fruits = ndb.StringProperty()
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -58,7 +62,7 @@ class DonorFormHandler(webapp2.RequestHandler):
 
     def post(self):
         #create a Donor to save to datastore
-        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("frui"))
+        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit"))
         donor.put()
         #puts donor in datastore and redirects to home page
         self.redirect('/')
@@ -72,7 +76,7 @@ class BankFormHandler(webapp2.RequestHandler):
         self.response.write(template.render())
     def post(self):
         #create a recipient to save to datastore
-        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email") )
+        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit") )
         bank.put()
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
