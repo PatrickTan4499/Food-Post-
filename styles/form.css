@@ -4,14 +4,14 @@ body {
   font-family: monospace;
   font-weight: bolder;
   background-image: url(/images/logo.png);
-  background-size: cover;
+  background-size: 580px 700px;
+  background-color: orange;
 }
 
 .material-icons {
   margin-left: -97%;
   position: relative;
 }
-
 
 h2 {
   font-size: 36px;
@@ -33,6 +33,9 @@ h2 {
 input[type=text]:focus {
     border: 3px solid #555;
 }
+
+input[type=checkbox] {
+	visibility: hidden;
 
 .submitbutt {
   border-radius: 4px;
