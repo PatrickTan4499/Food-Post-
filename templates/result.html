@@ -51,7 +51,7 @@
 
 <!-- displays all the donors -->
 <div id = rightcol>
-  <h1 id="resultTitle" >Donors: </h1>
+  <h1 id="resultTitle">Donors: </h1>
   {% for donor in donors %}
   <h2><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
@@ -95,24 +95,26 @@ div {
 
 h1 {
   font-size: 1.75rem;
-  margin: 0 0 0.75rem 0;
 }
 
 /* Pattern styles */
 .container {
   display: flex;
+  margin: 0;
 }
 
 #leftcol {
-  background-color: #ff9e2c;
+  background-color: #fa3635;
   flex: 1;
   padding: 1rem;
+  border-radius: 15px;
 }
 
 #rightcol {
-  background-color: #b6701e;
+  background-color: #fa7642;
   flex: 1;
   padding: 1rem;
+  border-radius: 15px;
 }
 
 
