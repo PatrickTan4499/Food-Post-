@@ -3,9 +3,6 @@ body{
   background-size: 1000px 1000px;
 }
 
-
-
-
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -71,7 +68,7 @@ h1 {
   margin-top: 40px;
   padding-bottom: 25px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 0px;
 }
 
 #leftcol {
@@ -107,9 +104,9 @@ br{
   font-family: monospace;
   color:black;
   font-size:50px;
-  text-align:center;
-  margin-top: -15%;
+  margin-top: -69%;
   text-decoration: underline;
+  position: absolute;
 }
 
 
@@ -117,6 +114,7 @@ br{
   font-family: monospace;
   color:black;
   font-size:50px;
-  text-align:center;
   text-decoration: underline;
+  margin-top:-69%;
+  position: absolute;
 }
