@@ -53,7 +53,6 @@ body{
 
 #resultTitle{
   font-family:arial;
-  margin-top:100px;
   color:#fff;
   font-size:50px;
   text-transform:uppercase;
@@ -176,14 +175,18 @@ body{
   margin-top: -40px;
 }
 
-#loginbutt{
+#loginbutt {
   background-color: #4CAF50;
+  position: absolute;
   color: white;
   padding: 16px;
   font-size: 16px;
-  border: none;
+  border: 5px;
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: -3.5%;
+  margin-left: 93.5%;
+  text-decoration: none;
+  border-radius: 3px;
 }
 
 #donorb {
@@ -233,6 +236,7 @@ body{
     font-size: 16px;
     border: none;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -249,6 +253,8 @@ body{
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    font-family: monospace;
+    font-size: 17px;
 }
 
 /* Links inside the dropdown */
