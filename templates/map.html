@@ -99,7 +99,6 @@
         }
       }
     }
-
     function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -113,6 +112,34 @@
         });
       }
 </script>
+
+   {% for bank in list %}
+      <h1>{{bank.name}}</h1>
+      {{bank.address}}, {{bank.city}}<br>
+      {{bank.phone}}<br>
+      {{bank.email}}
+      <br>
+      {% if bank.protiens != "" %}
+        <b>{{bank.protiens}}</b>
+        <br>
+      {% endif %}
+
+      {% if bank.grains != "" %}
+        <b>{{bank.grains}}</b>
+        <br>
+      {% endif %}
+
+      {% if bank.vegetables != "" %}
+        <b>{{bank.vegetables}}</b>
+        <br>
+      {% endif %}
+
+      {% if bank.fruits != "" %}
+        <b>{{bank.fruits}}</b>
+        <br>
+      {% endif %}
+
+      {% endfor %}
 
 </body>
 </html>
