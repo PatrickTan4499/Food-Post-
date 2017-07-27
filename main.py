@@ -130,15 +130,15 @@ class MatchHandler(webapp2.RequestHandler):
         #create similarity rating
 
         #double for loops and update rating
-        for bank in banks:
-            for donor in donors:
-                if bank.protiens == donor.protiens:
-                    #similarity +1
-                if bank.grains == donor.grains:
-                    #similarity +1
-                if bank.vegetables == donor.vegetables:
-                    #similarity +1
-                if bank.fruits == donor.fruits:
+        # for bank in banks:
+        #     for donor in donors:
+        #         if bank.protiens == donor.protiens:
+        #             #similarity +1
+        #         if bank.grains == donor.grains:
+        #             #similarity +1
+        #         if bank.vegetables == donor.vegetables:
+        #             #similarity +1
+        #         if bank.fruits == donor.fruits:
                     #similarity +1
 
         #display rank in order
