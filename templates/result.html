@@ -24,7 +24,6 @@
 <h1 id="resultTitle" >Banks: </h1>
 <div id = leftcol>
   {% for bank in banks %}
-  <h1 id="resultTitle" >Banks: </h1>
     <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}<br>
@@ -50,7 +49,7 @@
 </div>
 
 <!-- displays all the donors -->
-<h1 id="dresultTitle">Donors: </h1>
+  <h1 id="dresultTitle">Donors: </h1>
 <div id = rightcol>
   {% for donor in donors %}
   <h2 class = "donorname"><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
