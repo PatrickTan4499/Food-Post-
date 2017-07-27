@@ -149,40 +149,41 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
-        similarity = 0
-        current_user = Donor;
+
+
         #gets current logged in user's email
         user_email = users.get_current_user().email()
         #get all donors and banks from datastore
-        donors = Donor.query().fetch()
+        current_user = Donor.query(Donor.email==user_email).get()
         banks = Bank.query().fetch()
 
-        for donor in donors:
-            #look through all donors and find unique email for logged in user
-            if user_email == donor.email:
-                #sets that specific donor to current_user and test against all models of bank
-                current_user = donor
-                for bank in banks:
-                    #test for similarity and give a similarity score to each bank
-                    if current_user.protiens == bank.protiens:
-                        similarity += 1
-                    if current_user.grains == bank.grains:
-                        similarity += 1
-                    if current_user.vegetables == bank.vegetables:
-                        similarity += 1
-                    if current_user.fruits == bank.fruits:
-                        similarity += 1
 
+        #sets that specific donor to current_user and test against all models of bank
+        results = []
+        for bank in banks:
+            similarity = 0;
+            #test for similarity and give a similarity score to each bank
+            if current_user.protiens == bank.protiens:
+                similarity += 1
+            if current_user.grains == bank.grains:
+                similarity += 1
+            if current_user.vegetables == bank.vegetables:
+                similarity += 1
+            if current_user.fruits == bank.fruits:
+                similarity += 1
+            result = (bank, similarity)
+            results.append(result)
 
-#        banks.sort()
-#        else:
-#
+        results.sort(lambda result: result[1])
+        sortedBanks = []
+        for result in results:
+            sortedBanks.append(result[0])
 
-        teplate_vars = {
-
+        template_vars = {
+            "list": sortedBanks
         }
         template = jinja_environment.get_template("templates/map.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 
 app = webapp2.WSGIApplication([
