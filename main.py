@@ -161,7 +161,7 @@ class MatchHandler(webapp2.RequestHandler):
             result = (bank, similarity)
             results.append(result)
 
-        results.sort(lambda result: result[1])
+        results.sort(key=lambda result: result[1], reverse=True)
         for result in results:
             sortedBanks.append(result[0])
 
