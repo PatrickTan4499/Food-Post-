@@ -36,16 +36,12 @@
   </div>
 </div>
 
-    <h3 class = "toptext">Locate Nearby Food Banks</h3>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7IrX6t0pKJpU8Jnc-Jyrki3r2XA4sick&libraries=places&callback=initMap" async defer></script>
+<h3 class = "toptext">Locate Nearby Food Banks</h3>
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7IrX6t0pKJpU8Jnc-Jyrki3r2XA4sick&libraries=places&callback=initMap" async defer></script>
 
-    <script>
-    // Note: This example requires that you consent to location sharing when
-    // prompted by your browser. If you see the error "The Geolocation service
-    // failed.", it means you probably did not give permission for the browser to
-    // locate you.
-    var map, infoWindow, service;
+<script>
+  var map, infoWindow, service, geocoder;
     function initMap() {
       infoWindow = new google.maps.InfoWindow;
       if (navigator.geolocation) {
@@ -70,7 +66,6 @@
         handleLocationError(false, infoWindow, map.getCenter());
       }
     }
-
     // TODO: handle this error by showing a default map
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
@@ -86,24 +81,37 @@
         radius: '8000',
         keyword: ['food bank']
       };
-
-      service = new google.maps.places.PlacesService(map);
+      infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
     }
 
     function callback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-          var place = results[i];
-          new google.maps.Marker({
-             map: map,
-             title: place.name,
-             position: place.geometry.location
-            })
+          // var place = results[i];
+          // new google.maps.Marker({
+          //    map: map,
+          //    title: place.name,
+          //    position: place.geometry.location
+          //   })
+          createMarker(results[i]);
         }
       }
     }
-   </script>
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
+</script>
 
    {% for bank in list %}
       <h1>{{bank.name}}</h1>
