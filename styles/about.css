@@ -46,12 +46,10 @@
     background-color: #3e8e41;
 }
 
-
-
 .polaroid {
   position: relative;
   width: 220px;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-left: 15px;
 }
 
@@ -69,8 +67,8 @@
   text-align: center;
   width: 100%;
   bottom: 10px;
-  font: 400 18px/1 'Kaushan Script', cursive;
-  color: #888;
+  font: 400 22px/1 'Kaushan Script', cursive;
+  color: black;
   padding-left: 30px;
 }
 
@@ -118,3 +116,23 @@ body{
 	}
 
 }
+
+.poltextcont{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poltext {
+  font-family: monospace;
+  font-size: 22px;
+  position: absolute;
+  padding-left: 30%;
+  margin-top: -190px;
+  width: 50%;
+  color: black;
+  font-family: monospace;
+}
+
+font: 400 30px/1 'Kaushan Script', cursive;

@@ -46,6 +46,15 @@
 
 
 
+{% if current_user %}
+     <b>Welcome, {{current_user}}</b></br>
+     <a href="{{ logout_url }}">Log Out</a>
+ {% else %}
+     <a id="loginbutt" href="{{ login_url }}">Log In</a><br>
+ {% endif %}
+
+
+
 
 {% if current_user %}
     <a href="{{ logout_url }}">Log Out</a><br>
