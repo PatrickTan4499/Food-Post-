@@ -104,9 +104,11 @@ br{
   font-family: monospace;
   color:black;
   font-size:50px;
-  margin-top: -69%;
+  margin-top: 0%;
   text-decoration: underline;
-  position: absolute;
+  position: fixed;
+  margin-left: 19%;
+  margin-top: -5%;
 }
 
 
@@ -115,6 +117,8 @@ br{
   color:black;
   font-size:50px;
   text-decoration: underline;
-  margin-top:-69%;
-  position: absolute;
+  margin-top:0%;
+  position: fixed;
+  margin-left: 68%;
+  margin-top: -5%;
 }
