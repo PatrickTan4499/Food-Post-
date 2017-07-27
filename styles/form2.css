@@ -90,3 +90,11 @@ input[type=text]:focus {
   opacity: 1;
   right: 0;
 }
+
+input[type='checkbox'] {
+    width:30px;
+    height:10px;
+    border-radius:5px;
+    border:5px solid #555;
+    padding: 15px;
+}
