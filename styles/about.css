@@ -81,19 +81,19 @@ body{
 
 @-webkit-keyframes colour{
 	0%{
-		background:#ec6a38
+		background: #FF6666
 	}
 
 	40%{
-		background:#ec4038
+		background: #ED6678
 	}
 
 	80%{
-		background:#ec9138
+		background: #E01433
 	}
 
 	100%{
-		background:#ec6a38
+		background: #FF6666
 	}
 
 }

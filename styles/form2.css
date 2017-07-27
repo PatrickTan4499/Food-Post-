@@ -51,16 +51,42 @@ input[type=text]:focus {
 }
 
 
-.submitbutt{
+.button {
+  display: inline-block;
   border-radius: 4px;
   background-color: blue;
   border: none;
   color: white;
   text-align: center;
-  font-size: 25px;
+  font-size: 28px;
   padding: 20px;
-  width: 150px;
-  transition: all 0.5s;
+  width: 200px;
+  transition: all 0.3s;
   cursor: pointer;
-  margin: 15px;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.3s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
