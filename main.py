@@ -149,20 +149,14 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
-
-
-        #gets current logged in user's email
+        sortedBanks = []
+        results = []
         user_email = users.get_current_user().email()
-        #get all donors and banks from datastore
         current_user = Donor.query(Donor.email==user_email).get()
         banks = Bank.query().fetch()
 
-
-        #sets that specific donor to current_user and test against all models of bank
-        results = []
         for bank in banks:
             similarity = 0;
-            #test for similarity and give a similarity score to each bank
             if current_user.protiens == bank.protiens:
                 similarity += 1
             if current_user.grains == bank.grains:
@@ -175,7 +169,6 @@ class MatchHandler(webapp2.RequestHandler):
             results.append(result)
 
         results.sort(lambda result: result[1])
-        sortedBanks = []
         for result in results:
             sortedBanks.append(result[0])
 
