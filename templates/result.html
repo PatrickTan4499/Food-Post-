@@ -22,8 +22,8 @@
 
 <!-- displays all food shelters -->
 <div id = leftcol>
-  <h1 id="resultTitle" >Banks: </h1>
   {% for bank in banks %}
+  <h1 id="resultTitle" >Banks: </h1>
     <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}<br>
