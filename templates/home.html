@@ -25,14 +25,12 @@
     <script src="/javascript/javascript.js"></script>
 
 
-
 <!-- title and logo -->
   <title>Food Post</title>
   <div id="statmenu">
-    <br>
     <h1 class = "statcont" id="maintitle">Food Post</h1>
+
     <img id = "logo" src="images/logo.png" alt="LOGO">
-  </br>
   </div>
 
 
@@ -58,6 +56,27 @@
 
 
 
+{% if current_user %}
+    <a href="{{ logout_url }}">Log Out</a><br>
+{% else %}
+      <a href="{{ login_url }}">Log In</a><br>
+{% endif %}
+
+  <!--sign out button-->
+  <!-- <button id=#signOut href="#" onclick="signOut();">Sign out</button>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+  </script>
+
+  <!-- google sign in -->
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="276950401708-j0h4uu0865lqk4gu2tst9hsh8v10e20p.apps.googleusercontent.com">
+  <div id = "signin" class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
 
 

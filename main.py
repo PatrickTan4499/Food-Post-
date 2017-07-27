@@ -18,10 +18,18 @@ class Donor(ndb.Model):
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
     post_key = ndb.KeyProperty()
+
+    #input from checkboxes
     vegetables = ndb.StringProperty()
     grains = ndb.StringProperty()
     protiens = ndb.StringProperty()
     fruits = ndb.StringProperty()
+
+    #input from textarea
+    vegetable = ndb.StringProperty()
+    grain = ndb.StringProperty()
+    protien = ndb.StringProperty()
+    fruit = ndb.StringProperty()
 
 class Bank(ndb.Model):
     #creates recipient class to store all their info
@@ -32,10 +40,15 @@ class Bank(ndb.Model):
     phone = ndb.StringProperty()
     email = ndb.StringProperty()
     post_key = ndb.KeyProperty()
+
+    #input from checkboxes
     vegetables = ndb.StringProperty()
     grains = ndb.StringProperty()
     protiens = ndb.StringProperty()
     fruits = ndb.StringProperty()
+
+class User(ndb.Model):
+    name = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -62,8 +75,7 @@ class DonorFormHandler(webapp2.RequestHandler):
     def post(self):
         #create a Donor to save to datastore
 
-        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit"))
-
+        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit"), protien = self.request.get("protiens"), grain = self.request.get("grains"), vegetable = self.request.get("vegetables"), fruit = self.request.get("fruits"))
         donor.put()
         #puts donor in datastore and redirects to home page
         self.redirect('/')
@@ -112,6 +124,26 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
+        #get all banks and donors
+        banks = Bank.query().fetch()
+        donors = Donor.query().fetch()
+        #create similarity rating
+
+        #double for loops and update rating
+#        for bank in banks:
+#            for donor in donors:
+#                if bank.protiens == donor.protiens:
+#                    #similarity +1
+#                if bank.grains == donor.grains:
+#                    #similarity +1
+#                if bank.vegetables == donor.vegetables:
+#                    #similarity +1
+#                if bank.fruits == donor.fruits:
+#                    #similarity +1
+
+        #display rank in order
+
+
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
