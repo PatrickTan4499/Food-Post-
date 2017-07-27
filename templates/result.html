@@ -21,6 +21,7 @@
 
 
 <!-- displays all food shelters -->
+<h1 id="resultTitle" >Banks: </h1>
 <div id = leftcol>
   {% for bank in banks %}
   <h1 id="resultTitle" >Banks: </h1>
@@ -49,8 +50,8 @@
 </div>
 
 <!-- displays all the donors -->
+<h1 id="dresultTitle">Donors: </h1>
 <div id = rightcol>
-  <h1 id="dresultTitle">Donors: </h1>
   {% for donor in donors %}
   <h2 class = "donorname"><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
