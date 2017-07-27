@@ -47,8 +47,6 @@ class Bank(ndb.Model):
     protiens = ndb.StringProperty()
     fruits = ndb.StringProperty()
 
-class User(ndb.Model):
-    name = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -74,9 +72,24 @@ class DonorFormHandler(webapp2.RequestHandler):
 
     def post(self):
         #create a Donor to save to datastore
+        name = self.request.get("name")
+        city = self.request.get("city")
+        address = self.request.get("streetname")
+        zipcode = self.request.get("zipcode")
+        phone = self.request.get("phone")
+        email = users.get_current_user().email()
+        protiens = self.request.get("protien")
+        grains = self.request.get("grain")
+        vegetables = self.request.get("vegetable")
+        fruits = self.request.get("fruit")
+        protien = self.request.get("protiens")
+        grain = self.request.get("grains")
+        vegetable = self.request.get("vegetables")
+        fruit = self.request.get("fruits")
 
-        donor = Donor(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit"), protien = self.request.get("protiens"), grain = self.request.get("grains"), vegetable = self.request.get("vegetables"), fruit = self.request.get("fruits"))
+        donor = Donor(name = name, city = city, address = address, zipcode = zipcode, phone = phone, email = email, protiens = protiens, grains = grains, vegetables = vegetables, fruits = fruits, protien = protien, grain = grain, vegetable = vegetable, fruit = fruit)
         donor.put()
+
         #puts donor in datastore and redirects to home page
         self.redirect('/')
         template = jinja_environment.get_template("templates/form.html")
@@ -89,8 +102,20 @@ class BankFormHandler(webapp2.RequestHandler):
         self.response.write(template.render())
     def post(self):
         #create a recipient to save to datastore
-        bank = Bank(name = self.request.get("name"), city = self.request.get("city"), address = self.request.get("streetname"), zipcode = self.request.get("zipcode"), phone = self.request.get("phone"), email = self.request.get("email"), protiens = self.request.get("protien"), grains = self.request.get("grain"), vegetables = self.request.get("vegetable"), fruits = self.request.get("fruit") )
+        name = self.request.get("name")
+        city = self.request.get("city")
+        address = self.request.get("streetname")
+        zipcode = self.request.get("zipcode")
+        phone = self.request.get("phone")
+        email = users.get_current_user().email()
+        protiens = self.request.get("protien")
+        grains = self.request.get("grain")
+        vegetables = self.request.get("vegetable")
+        fruits = self.request.get("fruit")
+
+        bank = Bank(name = name, city = city, address = address, zipcode = zipcode, phone = phone, email = email, protiens = protiens, grains = grains, vegetables = vegetables, fruits = fruits )
         bank.put()
+
         #puts recipient in datastore and redirects to home page
         self.redirect('/')
         template = jinja_environment.get_template("templates/form2.html")
@@ -124,26 +149,38 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
-        #get all banks and donors
-        banks = Bank.query().fetch()
+        similarity = 0
+        current_user = Donor;
+        #gets current logged in user's email
+        user_email = users.get_current_user().email()
+        #get all donors and banks from datastore
         donors = Donor.query().fetch()
-        #create similarity rating
+        banks = Bank.query().fetch()
 
-        #double for loops and update rating
-#        for bank in banks:
-#            for donor in donors:
-#                if bank.protiens == donor.protiens:
-#                    #similarity +1
-#                if bank.grains == donor.grains:
-#                    #similarity +1
-#                if bank.vegetables == donor.vegetables:
-#                    #similarity +1
-#                if bank.fruits == donor.fruits:
-#                    #similarity +1
+        for donor in donors:
+            #look through all donors and find unique email for logged in user
+            if user_email == donor.email:
+                #sets that specific donor to current_user and test against all models of bank
+                current_user = donor
+                for bank in banks:
+                    #test for similarity and give a similarity score to each bank
+                    if current_user.protiens == bank.protiens:
+                        similarity += 1
+                    if current_user.grains == bank.grains:
+                        similarity += 1
+                    if current_user.vegetables == bank.vegetables:
+                        similarity += 1
+                    if current_user.fruits == bank.fruits:
+                        similarity += 1
 
-        #display rank in order
 
+#        banks.sort()
+#        else:
+#
 
+        teplate_vars = {
+
+        }
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
