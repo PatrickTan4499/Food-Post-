@@ -66,6 +66,7 @@ body{
   margin-top: 5%;
 }
 
+
 .button {
   position: absolute;
   border: none;
@@ -77,13 +78,92 @@ body{
   font-family: monospace;
   font-size: 30px;
   margin-left: 35%;
-  margin-top: 15%;
+  margin-top: 20%;
   background: orange;
   border-radius: 5px;
   transition: all 0.5s;
   cursor: pointer;
   box-shadow: 10px 10px 5px #ec4038;
+  display: inline-block;
+  border-radius: 4px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.button2 {
+  position: absolute;
+  border: none;
+  color: black;
+  padding: 25px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 30px;
+  margin-left: 37%;
+  margin-top: 35%;
+  background: orange;
+  border-radius: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px #ec4038;
+  display: inline-block;
+  border-radius: 4px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 
 #signin {
   background-color: none;
@@ -103,6 +183,7 @@ body{
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin-top: 50px;
 }
 
 #donorb {
