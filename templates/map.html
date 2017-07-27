@@ -44,8 +44,6 @@
   var map, infoWindow, service, geocoder;
     function initMap() {
       infoWindow = new google.maps.InfoWindow;
-      var service = new google.maps.places.PlacesService(map);
-      service.nearbySearch
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = {
@@ -83,15 +81,15 @@
         radius: '8000',
         keyword: ['food bank']
       };
-
-      service = new google.maps.places.PlacesService(map);
+      infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
     }
 
     function callback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-          //var place = results[i];
+          // var place = results[i];
           // new google.maps.Marker({
           //    map: map,
           //    title: place.name,
@@ -103,22 +101,18 @@
     }
 
     function createMarker(place) {
-     var placeLoc = place.geometry.location;
-     var marker = new google.maps.Marker({
-       map: map,
-       position: place.geometry.location
-     });
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
 
-     google.maps.event.addListener(marker, 'click', function() {
-       infowindow.setContent(place.name);
-       infowindow.open(map, this);
-     });
-   }
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
 </script>
-
-   {% for bank in list %}
-      <h1>{{bank}}</h1>
-    {% endfor %}
 
 </body>
 </html>
