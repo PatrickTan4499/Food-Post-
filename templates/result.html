@@ -1,6 +1,6 @@
 <!-- link the css file -->
 <div>
-  <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
+  <link rel = "stylesheet" type = "text/css" href = "/styles/results.css"/>
 </div>
 
 <!-- creates the dropdown bar on this page -->
@@ -51,9 +51,9 @@
 
 <!-- displays all the donors -->
 <div id = rightcol>
-  <h1 id="resultTitle">Donors: </h1>
+  <h1 id="dresultTitle">Donors: </h1>
   {% for donor in donors %}
-  <h2><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
+  <h2 class = "donorname"><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}<br>
   {{donor.email}}
@@ -61,7 +61,7 @@
   <br>
   {% if donor.protiens != "" %}
     <b>{{donor.protiens}}:</b> {{donor.protien}}
-    <br>
+  </br>
   {% endif %}
 
   {% if donor.grains != "" %}
@@ -83,39 +83,3 @@
 </div>
 
 </section>
-
-<style>
-
-
-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-h1 {
-  font-size: 1.75rem;
-}
-
-/* Pattern styles */
-.container {
-  display: flex;
-  margin: 0;
-}
-
-#leftcol {
-  background-color: #fa3635;
-  flex: 1;
-  padding: 1rem;
-  border-radius: 15px;
-}
-
-#rightcol {
-  background-color: #fa7642;
-  flex: 1;
-  padding: 1rem;
-  border-radius: 15px;
-}
-
-
-</style>

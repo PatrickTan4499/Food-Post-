@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<!-- linking together the css and js -->
-<div>
-  <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
-  <script rel = "javasheet" type="text/javascript" src="/javascript/javascript.js"></script>
-  <script src="/javascript/javascript.js"></script>
-</div>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 80%;
+        margin-left: 10%;
+      }
 
+      .toptext{
+        text-align: center;
+        font-family: monospace;
+        font-size: 50px;
+        font-variant: small-caps;
+      }
+       }
+    </style>
+    <!-- linking together the css and js -->
+    <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
+    <script src="/javascript/javascript.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+  <body>
 
 <!-- dropdown menu -->
 <div class="dropdown">
@@ -19,31 +36,10 @@
   </div>
 </div>
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/javascript/javascript.js"></script>
-
-<html>
-  <head>
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-        margin-left: 20%;
-      }
-
-      .toptext{
-        text-align: center;
-        font-family: monospace;
-        font-size: 50px;
-        font-variant: small-caps;
-      }
-       }
-    </style>
-</head>
-  <body>
-    <h3 class = "toptext">Locate Your Nearest Donor or Food Bank</h3>
+    <h3 class = "toptext">Locate Nearby Food Banks</h3>
     <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7IrX6t0pKJpU8Jnc-Jyrki3r2XA4sick&libraries=places&callback=initMap" async defer></script>
+
     <script>
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
@@ -51,10 +47,6 @@
     // locate you.
     var map, infoWindow, service;
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 6
-      });
       infoWindow = new google.maps.InfoWindow;
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -62,11 +54,12 @@
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-
-          infoWindow.setPosition(pos);
-          infoWindow.setContent('Location found.');
-          infoWindow.open(map);
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: 15
+          });
           map.setCenter(pos);
+          searchForFoodBanks(map);
         }, function() {
           handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -75,6 +68,7 @@
       }
     }
 
+    // TODO: handle this error by showing a default map
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
@@ -82,18 +76,12 @@
                             'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
     }
-    function initialize() {
-      var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
 
-      map = new google.maps.Map(document.getElementById('map'), {
-          center: pyrmont,
-          zoom: 15
-        });
-
+    function searchForFoodBanks(map) {
       var request = {
-        location: pyrmont,
+        location: map.getCenter(),
         radius: '500',
-        type: ['restaurant']
+        keyword: ['food bank']
       };
 
       service = new google.maps.places.PlacesService(map);
@@ -104,281 +92,15 @@
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
-          createMarker(results[i]);
+          new google.maps.Marker({
+             map: map,
+             title: place.name,
+             position: place.geometry.location
+            })
         }
       }
     }
   </script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
-<!-- <table border="1">
-  <tr>
-    <td>
-      <div id="map" style="height: 600px; width:500px;"></div>
-    </td>
-    <td>
-      <div id="side_bar"></div>
-    </td>
-  </tr>
-</table> -->
-<!-- <input id="address" type="text" value="" placeholder="'food donor' or 'food bank'"></input>
-<input type="button" value="Search" onclick="codeAddress();"></input>
-<div id="info"></div>
-<script>
-var geocoder;
-var map;
-var bounds = new google.maps.LatLngBounds();
 
-function initialize() {
-  map = new google.maps.Map(
-    document.getElementById("map_canvas"), {
-      center: new google.maps.LatLng( 37.420179,  -122.07472),
-      zoom: 4,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-  geocoder = new google.maps.Geocoder();
-
-  for (i = 0; i < locations.length; i++) {
-
-
-    geocodeAddress(locations, i);
-  }
-}
-google.maps.event.addDomListener(window, "load", initialize);
-
-function geocodeAddress(locations, i) {
-  var title = locations[i][0];
-  var address = locations[i][1];
-  var url = locations[i][2];
-  geocoder.geocode({
-      'address': locations[i][1]
-    },
-
-    function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var marker = new google.maps.Marker({
-          icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
-          map: map,
-          position: results[0].geometry.location,
-          title: title,
-          animation: google.maps.Animation.DROP,
-          address: address,
-          url: url
-        })
-        infoWindow(marker, map, title, address, url);
-        bounds.extend(marker.getPosition());
-        map.fitBounds(bounds);
-      } else {
-        alert("geocode of " + address + " failed:" + status);
-      }
-    });
-}
-
-function infoWindow(marker, map, title, address, url) {
-  google.maps.event.addListener(marker, 'click', function() {
-    var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
-    iw = new google.maps.InfoWindow({
-      content: html,
-      maxWidth: 350
-    });
-    iw.open(map, marker);
-  });
-}
-
-function createMarker(results) {
-  var marker = new google.maps.Marker({
-    icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
-    map: map,
-    position: results[0].geometry.location,
-    title: title,
-    animation: google.maps.Animation.DROP,
-    address: address,
-    url: url
-  })
-  bounds.extend(marker.getPosition());
-  map.fitBounds(bounds);
-  infoWindow(marker, map, title, address, url);
-  return marker;
-}
-
-</script>
-
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7ebnBGvPvJ2q6_YlFwRLeaU-Sx-BD8WM&callback=initMap">
-</script>
-  </body>
-</html> -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Places Searchbox</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 70%;
-        width: 60%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #description {
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-      }
-
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
-      }
-
-      .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        font-family: Roboto;
-      }
-
-      #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-      }
-
-      .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-      }
-
-      .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
-  </head>
-  <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
-    <script>
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      function initAutocomplete() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
-        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
-      }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_mASV-56uv2SEhG7gg2MQ_GAKv3ih_Tg&libraries=places&callback=initAutocomplete"
-         async defer></script>
-  </body>
+</body>
 </html>
