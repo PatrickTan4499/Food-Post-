@@ -29,21 +29,21 @@
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}<br>
     {{bank.email}}
-
+    <br>
     {% if bank.protiens != none %}
-      {{bank.protiens}}
+      <b>{{bank.protiens}}</b>
     {% endif %}
-    <br>
+
     {% if bank.grains != none %}
-      {{bank.grains}}
+      <b>{{bank.grains}}</b>
     {% endif %}
-    <br>
+
     {% if bank.vegetables != none %}
-      {{bank.vegetables}}
+      <b>{{bank.vegetables}}</b>
     {% endif %}
-    <br>
+
     {% if bank.fruits != none %}
-      {{bank.fruits}}
+      <b>{{bank.fruits}}</b>
     {% endif %}
 
   {% endfor %}
@@ -57,26 +57,21 @@
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}<br>
   {{donor.email}}
-  <!-- not working fully-->
   <br>
   {% if donor.protiens != "" %}
     <b>{{donor.protiens}}:</b> {{donor.protien}}
-  </br>
   {% endif %}
 
   {% if donor.grains != "" %}
     <b>{{donor.grains}}:</b> {{donor.grain}}
-    <br>
   {% endif %}
 
   {% if donor.vegetables != "" %}
     <b>{{donor.vegetables}}:</b> {{donor.vegetable}}
-    <br>
   {% endif %}
 
   {% if donor.fruits != "" %}
     <b>{{donor.fruits}}:</b> {{donor.fruit}}
-    <br>
   {% endif %}
 
   {% endfor %}
