@@ -56,8 +56,11 @@
           };
           map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
-            zoom: 15
+            zoom:13
           });
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('You are here.');
+          infoWindow.open(map);
           map.setCenter(pos);
           searchForFoodBanks(map);
         }, function() {
@@ -80,7 +83,7 @@
     function searchForFoodBanks(map) {
       var request = {
         location: map.getCenter(),
-        radius: '500',
+        radius: '8000',
         keyword: ['food bank']
       };
 
@@ -100,7 +103,11 @@
         }
       }
     }
-  </script>
+   </script>
+
+   {% for bank in list %}
+      <h1>{{bank}}</h1>
+    {% endfor %}
 
 </body>
 </html>
