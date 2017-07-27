@@ -109,14 +109,10 @@ class AboutHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/about.html")
         self.response.write(template.render())
 
-class MapHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template("templates/map.html")
-        self.response.write(template.render())
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template("templates/match.html")
+        template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render())
 
 
@@ -127,7 +123,6 @@ app = webapp2.WSGIApplication([
     ('/form2', BankFormHandler),
     ('/profile', ProfileHandler),
     ('/about', AboutHandler),
-    ('/map', MapHandler),
-    ('/match', MatchHandler)
+    ('/map', MatchHandler)
 
 ], debug=True)
