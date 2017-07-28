@@ -48,6 +48,7 @@ body{
     color: white;
     padding: 16px;
     font-size: 16px;
+    font-family:monospace;
     border: none;
     cursor: pointer;
     border-radius: 3px;

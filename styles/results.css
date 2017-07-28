@@ -1,6 +1,7 @@
 body{
   background-image: url(/images/paperbag.jpeg);
   background-size: 1000px 1000px;
+  background-color: #c3834c;
 }
 
 .dropbtn {
@@ -8,6 +9,7 @@ body{
     color: white;
     padding: 16px;
     font-size: 16px;
+    font-family: monospace;
     border: none;
     cursor: pointer;
     border-radius: 3px;
@@ -98,7 +100,7 @@ br{
   font-size:50px;
   margin-top: 0%;
   text-decoration: underline;
-  position: fixed;
+  position: absolute;
   margin-left: 19%;
   margin-top: -5%;
 }
@@ -110,7 +112,7 @@ br{
   font-size:50px;
   text-decoration: underline;
   margin-top:0%;
-  position: fixed;
+  position: absolute;
   margin-left: 68%;
   margin-top: -5%;
 }
