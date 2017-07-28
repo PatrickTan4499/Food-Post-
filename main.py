@@ -142,6 +142,7 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
+
         sortedBanks = []
         results = []
         user_email = users.get_current_user().email()
@@ -163,7 +164,7 @@ class MatchHandler(webapp2.RequestHandler):
                     similarity += 1
                 result = (bank, similarity)
                 results.append(result)
-        else:
+        elif current_user_bank:
             for donor in donors:
                 similarity = 0;
                 if current_user_bank.protiens == donor.protiens:
@@ -181,10 +182,11 @@ class MatchHandler(webapp2.RequestHandler):
         for result in results:
             sortedBanks.append(result[0])
 
+        print sortedBanks
         template_vars = {
             "list": sortedBanks,
-            "donor": current_user_donor,
-            "bank": current_user_bank
+            "currdonor": current_user_donor,
+            "currbank": current_user_bank
         }
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render(template_vars))
