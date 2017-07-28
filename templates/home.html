@@ -8,16 +8,6 @@
 </div>
 
 
-<!-- dropdown menu -->
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Food Post</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="/">Home</a>
-    <a href="/result">Donors and Recipients</a>
-    <a href="/map">Matches</a>
-    <a href="/about">About Us</a>
-  </div>
-</div>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -43,6 +33,15 @@
 
 {% if current_user %}
      <b>Welcome, {{current_user}}</b></br>
+     <div class="dropdown">
+       <button onclick="myFunction()" class="dropbtn">Food Post</button>
+       <div id="myDropdown" class="dropdown-content">
+         <a href="/">Home</a>
+         <a href="/result">Donors and Recipients</a>
+         <a href="/map">Matches</a>
+         <a href="/about">About Us</a>
+       </div>
+     </div>
      <a href="{{ logout_url }}">Log Out</a>
      <div>
        <form method="get" action="/form2">
@@ -52,6 +51,7 @@
          <button class="button2" type="submit"><span>Become a Donor</span></button>
        </form>
      </div>
+
  {% else %}
      <a id="loginbutt" href="{{ login_url }}">Log In</a><br>
  {% endif %}
