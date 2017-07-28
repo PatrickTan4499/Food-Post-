@@ -91,7 +91,7 @@ class DonorFormHandler(webapp2.RequestHandler):
         donor.put()
 
         #puts donor in datastore and redirects to home page
-        self.redirect('/')
+        self.redirect('/map')
         template = jinja_environment.get_template("templates/form.html")
         self.response.write(template.render())
 
@@ -117,7 +117,7 @@ class BankFormHandler(webapp2.RequestHandler):
         bank.put()
 
         #puts recipient in datastore and redirects to home page
-        self.redirect('/')
+        self.redirect('/map')
         template = jinja_environment.get_template("templates/form2.html")
         self.response.write(template.render())
 
