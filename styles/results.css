@@ -80,7 +80,8 @@ h1 {
   padding: 1rem;
   border-radius: 2px;
   font-family: monospace;
-  color:black
+  color:black;
+  font-size: 19px;
 }
 
 #rightcol {
@@ -92,6 +93,7 @@ h1 {
   font-family: monospace;
   color:black;
   font-weight:600;
+  font-size: 19px;
 }
 
 br{

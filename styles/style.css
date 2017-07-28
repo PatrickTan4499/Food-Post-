@@ -283,8 +283,23 @@ body{
 }
 
 #welcome_user{
-  color: black;
+  margin-left: 74%;
+  padding-right: 10px;
   font-family: monospace;
   font-size: 20px;
-  position: rightcol;
-{}
+  position: absolute;
+  color:white;
+  font-weight: 400;
+  padding-top: 20px;
+}
+
+.logouturl{
+  text-decoration: none;
+  color:white;
+  margin-left: 80.5%;
+  position: absolute;
+  padding-top: 23px;
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: 400;
+}

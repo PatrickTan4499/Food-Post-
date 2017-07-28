@@ -106,6 +106,8 @@
 </script>
 
 
+<br>
+<h1>Your Matches</h1>
 {% if currdonor != "" %}
   {% for bank in list %}
     <h1>{{bank.name}}</h1>
@@ -162,6 +164,6 @@
 {% if currbank == "" and currdonor == "" %}
   <h1> Please fill out a form first on the home page </h1>
 {% endif %}
-
+</br>
 </body>
 </html>

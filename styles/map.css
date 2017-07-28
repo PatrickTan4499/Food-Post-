@@ -123,5 +123,6 @@ h1{
  font-family: monospace;
  font-size: 50px;
  font-variant: small-caps;
-}
+ color:white;
+ text-decoration: overline underline;
 }
