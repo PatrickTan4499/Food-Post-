@@ -303,3 +303,11 @@ body{
   font-size: 22px;
   font-weight: 400;
 }
+
+.introbl{
+  text-align: center;
+  font-family: monospace;
+  color:white;
+  font-size: 27px;
+  margin-top: 27%;
+}
