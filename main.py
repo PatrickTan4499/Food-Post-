@@ -142,6 +142,7 @@ class AboutHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
+
         sortedBanks = []
         results = []
         user_email = users.get_current_user().email()
@@ -149,7 +150,6 @@ class MatchHandler(webapp2.RequestHandler):
         current_user_bank = Bank.query(Bank.email==user_email).get()
         banks = Bank.query().fetch()
         donors = Donor.query().fetch()
-
 
         if current_user_donor:
             for bank in banks:
@@ -182,10 +182,11 @@ class MatchHandler(webapp2.RequestHandler):
         for result in results:
             sortedBanks.append(result[0])
 
+        print sortedBanks
         template_vars = {
             "list": sortedBanks,
-            "donor": current_user_donor,
-            "bank": current_user_bank
+            "currdonor": current_user_donor,
+            "currbank": current_user_bank
         }
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render(template_vars))
