@@ -150,6 +150,7 @@ class MatchHandler(webapp2.RequestHandler):
         banks = Bank.query().fetch()
         donors = Donor.query().fetch()
 
+
         if current_user_donor:
             for bank in banks:
                 similarity = 0;
@@ -163,7 +164,7 @@ class MatchHandler(webapp2.RequestHandler):
                     similarity += 1
                 result = (bank, similarity)
                 results.append(result)
-        else:
+        elif current_user_bank:
             for donor in donors:
                 similarity = 0;
                 if current_user_bank.protiens == donor.protiens:

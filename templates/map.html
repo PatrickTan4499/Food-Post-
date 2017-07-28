@@ -134,7 +134,7 @@
       {% endif %}
 
       {% endfor %}
-{% elif current_user_bank %}
+{% elif current_user_bank != "" %}
   {% for donor in list %}
      <h1>{{donor.name}}</h1>
      {{donor.address}}, {{donor.city}}<br>
@@ -163,6 +163,8 @@
 
   {% endfor %}
 
+{% else %}
+  <h1> Please fill out a form first </h1>
 {% endif %}
 
 </body>
