@@ -105,55 +105,27 @@
       }
 </script>
 
-{% if current_user_donor != "" %}
-   {% for bank in list %}
-      <h1>{{bank.name}}</h1>
-      <p class = "bankinfo">{{bank.address}}, {{bank.city}}</p>
-      <p class = "bankinfo">{{bank.phone}}</p>
-      <p class = "bankinfo">{{bank.email}}</p>
-
-
-      {% if bank.protiens != "" %}
-        <p class = "bankinfo">{{bank.protiens}}</p>
-        <br>
-      {% endif %}
-
-      {% if bank.grains != "" %}
-        <p class = "bankinfo">{{bank.grains}}</p>
-        <br>
-      {% endif %}
-
-      {% if bank.vegetables != "" %}
-        <p class = "bankinfo">{{bank.vegetables}}</p>
-        <br>
-      {% endif %}
-
-      {% if bank.fruits != "" %}
-        <p class = "bankinfo">{{bank.fruits}}</p>
-        <br>
-      {% endif %}
 
 {% if currdonor != "" %}
   {% for bank in list %}
     <h1>{{bank.name}}</h1>
-    {{bank.address}}, {{bank.city}}<br>
-    {{bank.phone}}<br>
-    {{bank.email}}
-    <br>
+    <p class = "bankinfo">{{bank.address}}, {{bank.city}}</p>
+    <p class = "bankinfo">{{bank.phone}}</p>
+    <p class = "bankinfo">{{bank.email}}</p>
     {% if bank.protiens != "" %}
-      <b>{{bank.protiens}}</b>
+      <p class = "bankinfo">{{bank.protiens}}</p>
       <br>
     {% endif %}
     {% if bank.grains != "" %}
-      <b>{{bank.grains}}</b>
+      <p class = "bankinfo">{{bank.grains}}</p>
       <br>
     {% endif %}
     {% if bank.vegetables != "" %}
-      <b>{{bank.vegetables}}</b>
+      <p class = "bankinfo">{{bank.vegetables}}</p>
       <br>
     {% endif %}
     {% if bank.fruits != "" %}
-      <b>{{bank.fruits}}</b>
+      <p class = "bankinfo">{{bank.fruits}}</p>
       <br>
     {% endif %}
   {% endfor %}

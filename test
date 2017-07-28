@@ -1,1 +1,53 @@
 
+{% if currdonor != "" %}
+  {% for bank in list %}
+    <h1>{{bank.name}}</h1>
+    {{bank.address}}, {{bank.city}}<br>
+    {{bank.phone}}<br>
+    {{bank.email}}
+    <br>
+    {% if bank.protiens != "" %}
+      <b>{{bank.protiens}}</b>
+      <br>
+    {% endif %}
+    {% if bank.grains != "" %}
+      <b>{{bank.grains}}</b>
+      <br>
+    {% endif %}
+    {% if bank.vegetables != "" %}
+      <b>{{bank.vegetables}}</b>
+      <br>
+    {% endif %}
+    {% if bank.fruits != "" %}
+      <b>{{bank.fruits}}</b>
+      <br>
+    {% endif %}
+  {% endfor %}
+{% elif currbank != "" %}
+  {% for donor in list %}
+    <h1>{{donor.name}}</h1>
+    {{donor.address}}, {{donor.city}}<br>
+    {{donor.phone}}<br>
+    {{donor.email}}
+    <br>
+    {% if donor.protiens != "" %}
+      <b>{{donor.protiens}}</b>: {{donor.protien}}
+      <br>
+    {% endif %}
+
+    {% if donor.grains != "" %}
+      <b>{{donor.grains}}:</b> {{donor.grain}}
+      <br>
+    {% endif %}
+
+    {% if donor.vegetables != "" %}
+      <b>{{donor.vegetables}}:</b> {{donor.vegetable}}
+      <br>
+    {% endif %}
+
+    {% if donor.fruits != "" %}
+      <b>{{donor.fruits}}:</b> {{donor.fruit}}
+      <br>
+    {% endif %}
+  {% endfor %}
+{% endif %}
