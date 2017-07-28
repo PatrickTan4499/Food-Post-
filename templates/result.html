@@ -52,7 +52,7 @@
   <h1 id="dresultTitle">Donors: </h1>
 <div id = rightcol>
   {% for donor in donors %}
-  <h2 class = "donorname"><a href="/profile?key={{donor.key.urlsafe()}}">{{donor.name}}</a></h2>
+  <h2 class = "donorname">{{donor.name}}</a></h2>
   {{donor.address}}, {{donor.city}}<br>
   {{donor.phone}}<br>
   {{donor.email}}

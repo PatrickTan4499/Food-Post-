@@ -106,6 +106,7 @@
       }
 </script>
 
+{% if current_user_donor != "" %}
    {% for bank in list %}
       <h1>{{bank.name}}</h1>
       {{bank.address}}, {{bank.city}}<br>
@@ -133,6 +134,36 @@
       {% endif %}
 
       {% endfor %}
+{% elif current_user_bank %}
+  {% for donor in list %}
+     <h1>{{donor.name}}</h1>
+     {{donor.address}}, {{donor.city}}<br>
+     {{donor.phone}}<br>
+     {{donor.email}}
+     <br>
+     {% if donor.protiens != "" %}
+       <b>{{donor.protiens}}</b>
+       <br>
+     {% endif %}
+
+     {% if donor.grains != "" %}
+       <b>{{donor.grains}}</b>
+       <br>
+     {% endif %}
+
+     {% if donor.vegetables != "" %}
+       <b>{{donor.vegetables}}</b>
+       <br>
+     {% endif %}
+
+     {% if bank.fruits != "" %}
+       <b>{{bank.fruits}}</b>
+       <br>
+     {% endif %}
+
+  {% endfor %}
+
+{% endif %}
 
 </body>
 </html>
