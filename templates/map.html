@@ -17,7 +17,7 @@
        }
     </style>
     <!-- linking together the css and js -->
-    <link rel = "stylesheet" type = "text/css" href = "/styles/style.css"/>
+    <link rel = "stylesheet" type = "text/css" href = "/styles/map.css"/>
     <script src="/javascript/javascript.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -108,27 +108,28 @@
 
    {% for bank in list %}
       <h1>{{bank.name}}</h1>
-      {{bank.address}}, {{bank.city}}<br>
-      {{bank.phone}}<br>
-      {{bank.email}}
-      <br>
+      <p class = "bankinfo">{{bank.address}}, {{bank.city}}</p>
+      <p class = "bankinfo">{{bank.phone}}</p>
+      <p class = "bankinfo">{{bank.email}}</p>
+
+
       {% if bank.protiens != "" %}
-        <b>{{bank.protiens}}</b>
+        <p class = "bankinfo">{{bank.protiens}}</p>
         <br>
       {% endif %}
 
       {% if bank.grains != "" %}
-        <b>{{bank.grains}}</b>
+        <p class = "bankinfo">{{bank.grains}}</p>
         <br>
       {% endif %}
 
       {% if bank.vegetables != "" %}
-        <b>{{bank.vegetables}}</b>
+        <p class = "bankinfo">{{bank.vegetables}}</p>
         <br>
       {% endif %}
 
       {% if bank.fruits != "" %}
-        <b>{{bank.fruits}}</b>
+        <p class = "bankinfo">{{bank.fruits}}</p>
         <br>
       {% endif %}
 

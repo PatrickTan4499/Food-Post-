@@ -1,8 +1,48 @@
 body{
-  background-image: url(/images/paperbag.jpeg);
-  background-size: 1000px 1000px;
+  background:#ec6a38;
+  -webkit-animation:colour 9s linear infinite;
+	-moz-animation:colour 9s linear infinite;
 }
 
+@-webkit-keyframes colour{
+	0%{
+		background:#ec6a38
+	}
+
+	40%{
+		background:#ec4038
+	}
+
+	80%{
+		background:#ec9138
+	}
+
+	100%{
+		background:#ec6a38
+	}
+
+}
+
+@-moz-keyframes colour{
+	0%{
+		background:#ec6a38
+	}
+
+	40%{
+		background:#ec4038
+	}
+
+	80%{
+		background:#ec9138
+	}
+
+	100%{
+		background:#ec6a38
+	}
+}
+
+/*hover dropdown
+/* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -15,7 +55,7 @@ body{
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-    position: relative;
+    position:relative;
     display: inline-block;
 }
 
@@ -23,7 +63,7 @@ body{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #c3834c;
+    background-color: #4CAF50;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -33,7 +73,7 @@ body{
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -52,65 +92,35 @@ body{
     background-color: #3e8e41;
 }
 
-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-h1 {
-  font-size: 1.75rem;
-}
-
-/* Pattern styles */
-.container {
-  display: flex;
-  margin-top: 40px;
-  padding-bottom: 25px;
-  padding-left: 10px;
-  padding-right: 0px;
-}
-
-#leftcol {
-  background-color: #aa7243;
-  opacity: .7;
-  flex: 1;
-  padding: 1rem;
-  border-radius: 2px;
-}
-
-#rightcol {
-  background-color: #926239;
-  opacity: .8;
-  flex: 1;
-  padding: 1rem;
-  border-radius: 2px;
-}
-
-br{
-  font-weight: 600;
-}
-
-
-#resultTitle{
+h1{
+  color:white;
+  font-size:40px;
   font-family: monospace;
-  color:black;
-  font-size:50px;
-  margin-top: 0%;
-  text-decoration: underline;
-  position: fixed;
-  margin-left: 19%;
-  margin-top: -5%;
+  text-align:center;
+  text-decoration: underline overline;
+  padding-top: 0px;
 }
 
-
-#dresultTitle{
+.bankinfo{
+  text-align: center;
+  text-decoration-style: solid;
+  font-size: 25px;
   font-family: monospace;
-  color:black;
-  font-size:50px;
-  text-decoration: underline;
-  margin-top:0%;
-  position: fixed;
-  margin-left: 68%;
-  margin-top: -5%;
+  color: white;
+  opacity: .85;
+}
+
+#map {
+ height: 500px;
+ width: 80%;
+ margin-left: 10%;
+}
+
+.toptext{
+ text-align: center;
+ font-family: monospace;
+ font-size: 50px;
+ font-variant: small-caps;
+}
 }
