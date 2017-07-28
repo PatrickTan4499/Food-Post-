@@ -13,7 +13,7 @@
   <button onclick="myFunction()" class="dropbtn">Food Post</button>
   <div id="myDropdown" class="dropdown-content">
     <a href="/">Home</a>
-    <a href="/result">Donors and Shelters</a>
+    <a href="/result">Donors and Recipients</a>
     <a href="/map">Matches</a>
     <a href="/about">About Us</a>
   </div>
@@ -34,14 +34,7 @@
 
 
 <!-- fill out forms button -->
-  <div>
-    <form method="get" action="/form2">
-      <button class= "button" type="submit"><span>Become a Recipient</span></button>
-    </form>
-    <form method="get" action="/form">
-      <button class="button2" type="submit"><span>Become a Donor</span></button>
-    </form>
-  </div>
+
 
 
 
@@ -51,6 +44,14 @@
 {% if current_user %}
      <b>Welcome, {{current_user}}</b></br>
      <a href="{{ logout_url }}">Log Out</a>
+     <div>
+       <form method="get" action="/form2">
+         <button class= "button" type="submit"><span>Become a Shelter</span></button>
+       </form>
+       <form method="get" action="/form">
+         <button class="button2" type="submit"><span>Become a Donor</span></button>
+       </form>
+     </div>
  {% else %}
      <a id="loginbutt" href="{{ login_url }}">Log In</a><br>
  {% endif %}

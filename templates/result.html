@@ -8,7 +8,7 @@
   <button onclick="myFunction()" class="dropbtn">Food Post</button>
   <div id="myDropdown" class="dropdown-content">
     <a href="/">Home</a>
-    <a href="/result">Donors and Shelters</a>
+    <a href="/result">Donors and Recipients</a>
     <a href="/map">Matches</a>
     <a href="/about">About Us</a>
   </div>
@@ -21,10 +21,10 @@
 
 
 <!-- displays all food shelters -->
-<h1 id="resultTitle" >Banks: </h1>
+<h1 id="resultTitle" >Recipients: </h1>
 <div id = leftcol>
   {% for bank in banks %}
-    <h1><a href="/profile?key={{bank.key.urlsafe()}}">{{bank.name}}</a></h2>
+    <h1>{{bank.name}}</a></h2>
     {{bank.address}}, {{bank.city}}<br>
     {{bank.phone}}<br>
     {{bank.email}}
