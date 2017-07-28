@@ -145,28 +145,46 @@ class MatchHandler(webapp2.RequestHandler):
         sortedBanks = []
         results = []
         user_email = users.get_current_user().email()
-        current_user = Donor.query(Donor.email==user_email).get()
+        current_user_donor = Donor.query(Donor.email==user_email).get()
+        current_user_bank = Bank.query(Bank.email==user_email).get()
         banks = Bank.query().fetch()
+        donors = Donor.query().fetch()
 
-        for bank in banks:
-            similarity = 0;
-            if current_user.protiens == bank.protiens:
-                similarity += 1
-            if current_user.grains == bank.grains:
-                similarity += 1
-            if current_user.vegetables == bank.vegetables:
-                similarity += 1
-            if current_user.fruits == bank.fruits:
-                similarity += 1
-            result = (bank, similarity)
-            results.append(result)
+        if current_user_donor:
+            for bank in banks:
+                similarity = 0;
+                if current_user_donor.protiens == bank.protiens:
+                    similarity += 1
+                if current_user_donor.grains == bank.grains:
+                    similarity += 1
+                if current_user_donor.vegetables == bank.vegetables:
+                    similarity += 1
+                if current_user_donor.fruits == bank.fruits:
+                    similarity += 1
+                result = (bank, similarity)
+                results.append(result)
+        else:
+            for donor in donors:
+                similarity = 0;
+                if current_user_bank.protiens == donor.protiens:
+                    similarity += 1
+                if current_user_bank.grains == donor.grains:
+                    similarity += 1
+                if current_user_bank.vegetables == donor.vegetables:
+                    similarity += 1
+                if current_user_bank.fruits == donor.fruits:
+                    similarity += 1
+                result = (donor, similarity)
+                results.append(result)
 
         results.sort(key=lambda result: result[1], reverse=True)
         for result in results:
             sortedBanks.append(result[0])
 
         template_vars = {
-            "list": sortedBanks
+            "list": sortedBanks,
+            "donor": current_user_donor,
+            "bank": current_user_bank
         }
         template = jinja_environment.get_template("templates/map.html")
         self.response.write(template.render(template_vars))
