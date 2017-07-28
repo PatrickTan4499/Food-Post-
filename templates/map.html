@@ -130,9 +130,7 @@
       <br>
     {% endif %}
   {% endfor %}
-{% endif %}
-
-{% if currbank != "" %}
+{% elif currbank != "" %}
   {% for donor in list %}
     <h1>{{donor.name}}</h1>
     {{donor.address}}, {{donor.city}}<br>
