@@ -79,6 +79,8 @@ h1 {
   flex: 1;
   padding: 1rem;
   border-radius: 2px;
+  font-family: monospace;
+  color:black
 }
 
 #rightcol {
@@ -87,6 +89,9 @@ h1 {
   flex: 1;
   padding: 1rem;
   border-radius: 2px;
+  font-family: monospace;
+  color:black;
+  font-weight:600;
 }
 
 br{
